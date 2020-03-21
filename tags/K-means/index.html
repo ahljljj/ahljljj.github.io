@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="has-navbar-fixed-top">
 <head>
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta charset="utf-8">
 <title>标签: K-means - ahljljj</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -18,7 +18,7 @@
 
     <meta property="og:type" content="website">
 <meta property="og:title" content="ahljljj">
-<meta property="og:url" content="http://yoursite.com/tags/K-means/index.html">
+<meta property="og:url" content="http://ahljljj.github.io/tags/K-means/index.html">
 <meta property="og:site_name" content="ahljljj">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="ahljljj">
@@ -62,10 +62,10 @@
     
 
 
-<meta name="generator" content="Hexo 4.2.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+<meta name="generator" content="Hexo 4.2.0"></head>
 <body>
     
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
     <div class="container">
         <div class="navbar-brand">
             <a class="navbar-item navbar-logo" href="/">
@@ -98,7 +98,7 @@
             
             
             
-            <a class="navbar-item" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+            <a class="navbar-item" title="GitHub" href="https://github.com/ahljljj" target="_blank" rel="noopener">
                 
                 <i class="fab fa-github"></i>
                 
@@ -145,24 +145,15 @@
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>Given a set $S={x_1,\cdots,x_n}$ ,  we aim to (1)  partition the $n$ observations into $k(k\leq n)$ subsets $\{s_1,\cdots,s_k\}$, (2) minimize within-cluster sum of squares. Formally, the objective is to find:</p>
-<script type="math/tex; mode=display">
-\begin{equation}\label{eqn:obj}\underset{s}{\text{argmin}}  \sum_{i=1}^k\sum_{x\in s_i} ||x-c_i||^2\end{equation}</script><p>where $c_i$ is the mean (center of mass) of points in the subset $s_i$.  Now in order to achieve this goal, the K-means algorithm reads as follows, first, we randomly pick $k$ points $\{c_1,\cdots,c_k\}$ which are called centroids and label those points in $S$ that closer to $c_i$ than any other centroids by $c_i$.  Mathematically, we just performed a Voronoi partition on $S$  for the lattice $\{c_1,\cdots,c_k\}$. Next, we want to keep doing this Voronoi partition by updating our lattice so that \ref{eqn:obj} is monotonously decreasing. There are two steps here:</p>
+        <html><head></head><body><h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>Given a set $S={x_1,\cdots,x_n}$ ,  we aim to (1)  partition the $n$ observations into $k(k\leq n)$ subsets $\{s_1,\cdots,s_k\}$, (2) minimize within-cluster sum of squares. Formally, the objective is to find:<br>$$<br>\begin{equation}\label{eqn:obj}\underset{s}{\text{argmin}}  \sum_{i=1}^k\sum_{x\in s_i} ||x-c_i||^2\end{equation}<br>$$<br>where $c_i$ is the mean (center of mass) of points in the subset $s_i$.  Now in order to achieve this goal, the K-means algorithm reads as follows, first, we randomly pick $k$ points $\{c_1,\cdots,c_k\}$ which are called centroids and label those points in $S$ that closer to $c_i$ than any other centroids by $c_i$.  Mathematically, we just performed a Voronoi partition on $S$  for the lattice $\{c_1,\cdots,c_k\}$. Next, we want to keep doing this Voronoi partition by updating our lattice so that \ref{eqn:obj} is monotonously decreasing. There are two steps here:</p>
 <ul>
-<li><p>Update the centroid $c_i$ of each cluster by its center of mass, i.e.,  </p>
-<script type="math/tex; mode=display">
-\begin{equation}\label{eqn: centroid}c_i=\frac{1}{|s_i|}\sum\_{x\in s_i} x;\end{equation}</script></li>
+<li><p>Update the centroid $c_i$ of each cluster by its center of mass, i.e.,<br>$$<br>\begin{equation}\label{eqn: centroid}c_i=\frac{1}{|s_i|}\sum_{x\in s_i} x;\end{equation}<br>$$</p>
+</li>
 <li><p>Update the cluster labels by doing Voronoi partition on the new centroids set $\{c_i,\cdots,c_k \}$.</p>
 </li>
 </ul>
-<h2 id="Monotonicity"><a href="#Monotonicity" class="headerlink" title="Monotonicity"></a>Monotonicity</h2><p>The monotonicity of K-means algorithm essentially follows from the basic fact that any function attains the extreme points at the points where its derivative is vanishing. In fact, we consider the following energy:</p>
-<script type="math/tex; mode=display">
-\begin{equation}\label{eqn:energy}f(c_1,\cdots,c_k)=\sum\_{i=1}^k\sum\_{x\in s_i} ||x-c_i||^2.\end{equation}</script><p>The gradient of $f$ with respect to $c_i$ is</p>
-<script type="math/tex; mode=display">
-\begin{equation}\label{eqn:grad}\frac{\partial f}{\partial c_i}=-2\sum\_{x\in s_i}(x-c_i),\quad i=1,\cdots k.\end{equation}</script><p>By pushing (\ref{eqn:grad}) $=0$ , it’s clear that </p>
-<script type="math/tex; mode=display">
-c_i=\frac{1}{|s_i|}\sum_{x\in s_i} x,</script><p>which is exactly the centroid we chose in the above updating step. This also implies that K-means is actually a gradient descent algorithm. Unlike the gradient descent we have seen in many other context, here, we have a closed and simple form for the gradient. So we don’t have to implement the algorithm to obtain the gradient but simply use this elegant math formulation (\ref{eqn: centroid}).</p>
-
+<h2 id="Monotonicity"><a href="#Monotonicity" class="headerlink" title="Monotonicity"></a>Monotonicity</h2><p>The monotonicity of K-means algorithm essentially follows from the basic fact that any function attains the extreme points at the points where its derivative is vanishing. In fact, we consider the following energy:<br>$$<br>\begin{equation}\label{eqn:energy}f(c_1,\cdots,c_k)=\sum_{i=1}^k\sum_{x\in s_i} ||x-c_i||^2.\end{equation}<br>$$<br>The gradient of $f$ with respect to $c_i$ is<br>$$<br>\begin{equation}\label{eqn:grad}\frac{\partial f}{\partial c_i}=-2\sum_{x\in s_i}(x-c_i),\quad i=1,\cdots k.\end{equation}<br>$$<br>By pushing (\ref{eqn:grad}) $=0$ , it&#x2019;s clear that<br>$$<br>c_i=\frac{1}{|s_i|}\sum_{x\in s_i} x,<br>$$<br>which is exactly the centroid we chose in the above updating step. This also implies that K-means is actually a gradient descent algorithm. Unlike the gradient descent we have seen in many other context, here, we have a closed and simple form for the gradient. So we don&#x2019;t have to implement the algorithm to obtain the gradient but simply use this elegant math formulation (\ref{eqn: centroid}).</p>
+</body></html>
     
     </div>
     
@@ -191,7 +182,7 @@ c_i=\frac{1}{|s_i|}\sum_{x\in s_i} x,</script><p>which is exactly the centroid w
                 <div class="columns is-mobile is-multiline is-centered">
                 
                     
-                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/ahljljj" target="_blank" rel="noopener">
                     
                     GitHub
                     
@@ -379,24 +370,7 @@ c_i=\frac{1}{|s_i|}\sum_{x\in s_i} x,</script><p>which is exactly the centroid w
     })(window);
 </script>
 
-<script src="/js/insight.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+<script src="/js/insight.js"></script>
 
     
 </body>

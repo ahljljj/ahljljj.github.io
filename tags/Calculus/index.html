@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="has-navbar-fixed-top">
 <head>
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta charset="utf-8">
 <title>标签: Calculus - ahljljj</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -18,7 +18,7 @@
 
     <meta property="og:type" content="website">
 <meta property="og:title" content="ahljljj">
-<meta property="og:url" content="http://yoursite.com/tags/Calculus/index.html">
+<meta property="og:url" content="http://ahljljj.github.io/tags/Calculus/index.html">
 <meta property="og:site_name" content="ahljljj">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="ahljljj">
@@ -62,10 +62,10 @@
     
 
 
-<meta name="generator" content="Hexo 4.2.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+<meta name="generator" content="Hexo 4.2.0"></head>
 <body>
     
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
     <div class="container">
         <div class="navbar-brand">
             <a class="navbar-item navbar-logo" href="/">
@@ -98,7 +98,7 @@
             
             
             
-            <a class="navbar-item" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+            <a class="navbar-item" title="GitHub" href="https://github.com/ahljljj" target="_blank" rel="noopener">
                 
                 <i class="fab fa-github"></i>
                 
@@ -145,15 +145,14 @@
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <h5 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h5><p>This analysis explores the relation between the gradient decent and stochastic gradient decent. Starting from the basic gradient decent method, we shall see that SGD actually decrease this energy on “average”.</p>
-<h5 id="Gradient-decent-a-math-approach"><a href="#Gradient-decent-a-math-approach" class="headerlink" title="Gradient decent: a math approach"></a>Gradient decent: a math approach</h5><p>Let’s introduce the convex function first.</p>
+        <html><head></head><body><h5 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h5><p>This analysis explores the relation between the gradient decent and stochastic gradient decent. Starting from the basic gradient decent method, we shall see that SGD actually decrease this energy on &#x201C;average&#x201D;.</p>
+<h5 id="Gradient-decent-a-math-approach"><a href="#Gradient-decent-a-math-approach" class="headerlink" title="Gradient decent: a math approach"></a>Gradient decent: a math approach</h5><p>Let&#x2019;s introduce the convex function first.</p>
 <ul>
-<li>A function $f:\mathbb{R}^n\rightarrow\mathbb{R}$ is convex if and only if for all $x,y$ $\in \mathbb{R}^n$ and $\lambda\in (0,1)$, we have<script type="math/tex; mode=display">
-f(\lambda x+(1-\lambda)y)\leq \lambda f(x)+(1-\lambda)f(y).</script></li>
+<li>A function $f:\mathbb{R}^n\rightarrow\mathbb{R}$ is convex if and only if for all $x,y$ $\in \mathbb{R}^n$ and $\lambda\in (0,1)$, we have<br>$$<br>f(\lambda x+(1-\lambda)y)\leq \lambda f(x)+(1-\lambda)f(y).<br>$$</li>
 </ul>
 <p>A more mathematical definition is</p>
 <ul>
-<li>A function is said to be convex if and only if it’s second derivative is always non-negative.</li>
+<li>A function is said to be convex if and only if it&#x2019;s second derivative is always non-negative.</li>
 </ul>
 <p>A simple example is the parabola equation $x^2$, and as you could see from the graph, this function has a unique minimum. The reason that we restricted our attention on the convex function is because its minimum could be easily calculated. In theory, to get the minimum/maximum of a function, we could simply set the derivative of it to zero and solve the equation(s).  However, there are two potential issues here.</p>
 <ul>
@@ -161,23 +160,15 @@ f(\lambda x+(1-\lambda)y)\leq \lambda f(x)+(1-\lambda)f(y).</script></li>
 <li>Even there is a explicit formula for the extreme points, the time complexity is $O(n^3)$ , which is another thing we need worry about if we have a super big data set.</li>
 </ul>
 <p>The gradient decent in machine learning is to find the minimum/maximum of a convex function without calculating the inverse matrix of the derivative. There are many discussions about this context online, here I just take a few lines to talk about the basic idea from the point view of mathematics.</p>
-<p>Given a convex function ^[The solution may not be converge to the global minimum without convexity.]  $f:\mathbb{R}^n\rightarrow\mathbb{R}$, we consider the following ordinary differential equation:  </p>
-<script type="math/tex; mode=display">
-\begin{equation}\label{eqn:grad}\frac{dx}{dt}=-\nabla f,\quad x\in \mathbb{R}^n\end{equation}.</script><p>We then look at the change of $f$ along the solution to  (\ref{eqn:grad}), and it turn out that $f$ is monotonicity decreasing along the solution, in fact,  the chain rule implies</p>
-<script type="math/tex; mode=display">
-\begin{equation}\label{eqn:mono}\frac{df}{dt}=\frac{df}{dx}\cdot \frac{dx}{dt}=-||\nabla f||^2.\end{equation}</script><p>Therefore, ideally, $f$ should decreases and decreases until it attains a constant. Then the right hand side of (\ref{eqn:mono}) implies that this constant must be the global minimum. (\ref{eqn:mono}) also implies that $f$ decreases fastest if we move $x$ in the direction of its negative gradient. The word “fastest” here could be interpreted as “most efficient” somehow, and it basically comes from the fact that the product of two vectors $a,b$ maximize/minimize if and only if  $a,b$ are parallel to each other. Another thing should be note here is that <strong>there are many other directions that make</strong> $f$ <strong>decreases, they are just not as efficient as</strong> $\nabla f$ <strong>does</strong>. This is the foundation of  SGD!</p>
-<h5 id="Gradient-descent-in-regression"><a href="#Gradient-descent-in-regression" class="headerlink" title="Gradient descent in regression"></a>Gradient descent in regression</h5><p>Regression is not as mysterious as its name suggest.  Mathematically, it’s just an algorithm to solve an optimization problem. Let’s consider the simple case: linear regression. The <em>cost/loss</em> function is defined to be sum square error:</p>
-<script type="math/tex; mode=display">
-\begin{equation}\label{eqn:linear}f(w)=||x\cdot w-y||^2\end{equation}</script><p>where $x\in M^{N\times n}$ is the feature matrix, $w\in M^{n\times 1}$ is the weight vector, and $y\in M^{N\times 1}$ is the true value. We want to find a best $w$ that minimize $f$ based on the known observations $(x,y)$. In other words, we just need find the minimum of $f$ . To do this, we  simply discretize (\ref{eqn:mono}) as follows:</p>
-<script type="math/tex; mode=display">
-\frac{f_{n+1}-f_n}{h}=-||\nabla f||_n^2,</script><p>the above expression can be rewritten as a standard iteration form:</p>
-<script type="math/tex; mode=display">
-\begin{equation}\label{alg:linear}f_{n+1}=f_n-h\cdot||\nabla f||_n^2,\end{equation}</script><p>where $h$ is the time step, and $\nabla f$ can be easily obtained in most regression models, for instance, </p>
-<script type="math/tex; mode=display">
-\nabla f=-2x^T\cdot(x\cdot w-y)</script><p> where $T$ is representing the transpose. Now if we ignore the numerical instabilities (usually caused by a big step-size $h$),  (\ref{eqn:mono}) implies that $f$ would monotonicity decreasing under (\ref{alg:linear})! </p>
+<p>Given a convex function ^[The solution may not be converge to the global minimum without convexity.]  $f:\mathbb{R}^n\rightarrow\mathbb{R}$, we consider the following ordinary differential equation:<br>$$<br>\begin{equation}\label{eqn:grad}\frac{dx}{dt}=-\nabla f,\quad x\in \mathbb{R}^n\end{equation}.<br>$$<br>We then look at the change of $f$ along the solution to  (\ref{eqn:grad}), and it turn out that $f$ is monotonicity decreasing along the solution, in fact,  the chain rule implies<br>$$<br>\begin{equation}\label{eqn:mono}\frac{df}{dt}=\frac{df}{dx}\cdot \frac{dx}{dt}=-||\nabla f||^2.\end{equation}<br>$$</p>
+<p>Therefore, ideally, $f$ should decreases and decreases until it attains a constant. Then the right hand side of (\ref{eqn:mono}) implies that this constant must be the global minimum. (\ref{eqn:mono}) also implies that $f$ decreases fastest if we move $x$ in the direction of its negative gradient. The word &#x201C;fastest&#x201D; here could be interpreted as &#x201C;most efficient&#x201D; somehow, and it basically comes from the fact that the product of two vectors $a,b$ maximize/minimize if and only if  $a,b$ are parallel to each other. Another thing should be note here is that <strong>there are many other directions that make</strong> $f$ <strong>decreases, they are just not as efficient as</strong> $\nabla f$ <strong>does</strong>. This is the foundation of  SGD!</p>
+<h5 id="Gradient-descent-in-regression"><a href="#Gradient-descent-in-regression" class="headerlink" title="Gradient descent in regression"></a>Gradient descent in regression</h5><p>Regression is not as mysterious as its name suggest.  Mathematically, it&#x2019;s just an algorithm to solve an optimization problem. Let&#x2019;s consider the simple case: linear regression. The <em>cost/loss</em> function is defined to be sum square error:<br>$$<br>\begin{equation}\label{eqn:linear}f(w)=||x\cdot w-y||^2\end{equation}<br>$$<br>where $x\in M^{N\times n}$ is the feature matrix, $w\in M^{n\times 1}$ is the weight vector, and $y\in M^{N\times 1}$ is the true value. We want to find a best $w$ that minimize $f$ based on the known observations $(x,y)$. In other words, we just need find the minimum of $f$ . To do this, we  simply discretize (\ref{eqn:mono}) as follows:</p>
+<p>$$<br>\frac{f_{n+1}-f_n}{h}=-||\nabla f||_n^2,<br>$$<br>the above expression can be rewritten as a standard iteration form:</p>
+<p>$$<br>\begin{equation}\label{alg:linear}f_{n+1}=f_n-h\cdot||\nabla f||_n^2,\end{equation}<br>$$<br>where $h$ is the time step, and $\nabla f$ can be easily obtained in most regression models, for instance, </p>
+<p>$$<br>\nabla f=-2x^T\cdot(x\cdot w-y)<br>$$<br> where $T$ is representing the transpose. Now if we ignore the numerical instabilities (usually caused by a big step-size $h$),  (\ref{eqn:mono}) implies that $f$ would monotonicity decreasing under (\ref{alg:linear})! </p>
 <h4 id="Stochastic-descent-gradient-SGD"><a href="#Stochastic-descent-gradient-SGD" class="headerlink" title="Stochastic descent gradient (SGD)"></a>Stochastic descent gradient (SGD)</h4><p>Like gradient descent, SGD is another numerical algorithm to find the minimum/maximum.</p>
 <p>TBD.</p>
-
+</body></html>
     
     </div>
     
@@ -206,7 +197,7 @@ f(\lambda x+(1-\lambda)y)\leq \lambda f(x)+(1-\lambda)f(y).</script></li>
                 <div class="columns is-mobile is-multiline is-centered">
                 
                     
-                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/ahljljj" target="_blank" rel="noopener">
                     
                     GitHub
                     
@@ -394,24 +385,7 @@ f(\lambda x+(1-\lambda)y)\leq \lambda f(x)+(1-\lambda)f(y).</script></li>
     })(window);
 </script>
 
-<script src="/js/insight.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+<script src="/js/insight.js"></script>
 
     
 </body>
