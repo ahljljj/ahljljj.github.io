@@ -16,15 +16,15 @@
 
 
 
-    <meta name="description" content="SELECT basicshttps:&#x2F;&#x2F;sqlzoo.net&#x2F;wiki&#x2F;SELECT_basics   name continent area population gdp    Afghanistan Asia 652230 25500100 20343000000   Albania Europe 28748 2831741 12960000000   Algeria Africa 2381">
+    <meta name="description" content="SELECT basicshttps:&#x2F;&#x2F;sqlzoo.net&#x2F;wiki&#x2F;SELECT_basics">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SELECT basic">
 <meta property="og:url" content="http://ahljljj.github.io/2018/08/15/2018-08-16-SELECT-basic/index.html">
 <meta property="og:site_name" content="ahljljj">
-<meta property="og:description" content="SELECT basicshttps:&#x2F;&#x2F;sqlzoo.net&#x2F;wiki&#x2F;SELECT_basics   name continent area population gdp    Afghanistan Asia 652230 25500100 20343000000   Albania Europe 28748 2831741 12960000000   Algeria Africa 2381">
+<meta property="og:description" content="SELECT basicshttps:&#x2F;&#x2F;sqlzoo.net&#x2F;wiki&#x2F;SELECT_basics">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2018-08-16T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-03-21T20:26:12.193Z">
+<meta property="article:modified_time" content="2020-03-21T21:19:27.690Z">
 <meta property="article:author" content="ahljljj">
 <meta name="twitter:card" content="summary">
 
@@ -141,13 +141,13 @@
         <span class="column is-narrow">
             
             
-            1 分钟 读完 (约 178 字)
+            1 分钟 读完 (约 180 字)
         </span>
         
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <html><head></head><body><h2 id="SELECT-basics"><a href="#SELECT-basics" class="headerlink" title="SELECT basics"></a>SELECT basics</h2><h3 id="https-sqlzoo-net-wiki-SELECT-basics"><a href="#https-sqlzoo-net-wiki-SELECT-basics" class="headerlink" title="https://sqlzoo.net/wiki/SELECT_basics"></a><a href="https://sqlzoo.net/wiki/SELECT_basics" target="_blank" rel="noopener">https://sqlzoo.net/wiki/SELECT_basics</a></h3><table>
+        <html><head></head><body><h2 id="SELECT-basics"><a href="#SELECT-basics" class="headerlink" title="SELECT basics"></a>SELECT basics</h2><h3 id="https-sqlzoo-net-wiki-SELECT-basics"><a href="#https-sqlzoo-net-wiki-SELECT-basics" class="headerlink" title="https://sqlzoo.net/wiki/SELECT_basics"></a><a href="https://sqlzoo.net/wiki/SELECT_basics" target="_blank" rel="noopener">https://sqlzoo.net/wiki/SELECT_basics</a><a id="more"></a></h3><table>
 <thead>
 <tr>
 <th>name</th>
@@ -200,7 +200,8 @@
 <td></td>
 </tr>
 </tbody></table>
-<p>1). The example uses a WHERE clause to show the population of &#x2018;France&#x2019;. Note that strings (pieces of text that are data) should be in &#x2018;single quotes&#x2019;; Modify it to show the population of Germany</p>
+<!--more-->1). The example uses a WHERE clause to show the population of &apos;France&apos;. Note that strings (pieces of text that are data) should be in &apos;single quotes&apos;; Modify it to show the population of Germany
+
 <p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> population <span class="hljs-keyword">FROM</span> world</span><br><span class="line">  <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> = <span class="hljs-string">&apos;Germany&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
 <p>2). Checking a list The word <strong>IN</strong> allows us to check if an item is in a list. The example shows the name and population for the countries &#x2018;Brazil&#x2019;, &#x2018;Russia&#x2019;, &#x2018;India&#x2019; and &#x2018;China&#x2019;. Show the <strong>name</strong> and the <strong>population</strong> for &#x2018;Sweden&#x2019;, &#x2018;Norway&#x2019; and &#x2018;Denmark&#x2019;.</p>
 <p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span>, population <span class="hljs-keyword">FROM</span> world</span><br><span class="line">  <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">IN</span> ( <span class="hljs-string">&apos;Sweden&apos;</span>, <span class="hljs-string">&apos;Norway&apos;</span> , <span class="hljs-string">&apos;Denmark&apos;</span>);</span><br></pre></td></tr></tbody></table></figure><p></p>

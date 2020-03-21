@@ -145,87 +145,16 @@
         <span class="column is-narrow">
             
             
-            4 分钟 读完 (约 647 字)
+            4 分钟 读完 (约 648 字)
         </span>
         
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <html><head></head><body><h2 id="SELECT-names"><a href="#SELECT-names" class="headerlink" title="SELECT names"></a>SELECT names</h2><h3 id="https-sqlzoo-net-wiki-SELECT-names"><a href="#https-sqlzoo-net-wiki-SELECT-names" class="headerlink" title="https://sqlzoo.net/wiki/SELECT_names"></a><a href="https://sqlzoo.net/wiki/SELECT_names" target="_blank" rel="noopener">https://sqlzoo.net/wiki/SELECT_names</a></h3><h3 id="Pattern-Matching-Strings"><a href="#Pattern-Matching-Strings" class="headerlink" title="Pattern Matching Strings"></a>Pattern Matching Strings</h3><p>This tutorial uses the <strong>LIKE</strong> operator to check names. We will be using the SELECT command on the table <strong>world</strong>:</p>
-<table>
-<thead>
-<tr>
-<th>name</th>
-<th>continent</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Afghanistan</td>
-<td>Asia</td>
-</tr>
-<tr>
-<td>Albania</td>
-<td>Europe</td>
-</tr>
-<tr>
-<td>Algeria</td>
-<td>Africa</td>
-</tr>
-<tr>
-<td>Andorra</td>
-<td>Europe</td>
-</tr>
-<tr>
-<td>Angola</td>
-<td>Africa</td>
-</tr>
-<tr>
-<td>&#x2026;.</td>
-<td></td>
-</tr>
-</tbody></table>
-<p>1). You can use <code>WHERE name LIKE &apos;B%&apos;</code> to find the countries that start with &#x201C;B&#x201D;.</p>
-<ul>
-<li>The % is a <em>wild-card</em> it can match any characters</li>
-</ul>
-<p>Find the country that start with Y</p>
-<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">FROM</span> world</span><br><span class="line">  <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&apos;Y%&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>2). Find the countries that end with <strong>y</strong> </p>
-<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">FROM</span> world</span><br><span class="line">  <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&apos;%y&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>3). Luxembourg has an <strong>x</strong> - so does one other country. List them both. Find the countries that contain the letter <strong>x</strong></p>
-<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">FROM</span> world</span><br><span class="line">  <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&apos;%x%&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>4). Iceland, Switzerland end with <strong>land</strong> - but are there others? Find the countries that end with <strong>land</strong></p>
-<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">FROM</span> world</span><br><span class="line">  <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&apos;%land&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>5). Columbia starts with a <strong>C</strong> and ends with <strong>ia</strong> - there are two more like this. Find the countries that start with <strong>C</strong> and end with <strong>ia</strong></p>
-<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">FROM</span> world</span><br><span class="line">  <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&apos;C%ia&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>6). Greece has a double <strong>e</strong> - who has a double <strong>o</strong>? Find the country that has <strong>oo</strong> in the name</p>
-<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">FROM</span> world</span><br><span class="line">  <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&apos;%oo%&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>7). Bahamas has three <strong>a</strong> - who else? Find the countries that have three or more <strong>a</strong> in the name</p>
-<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">FROM</span> world</span><br><span class="line">  <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&apos;%a%a%a%&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>8). India and Angola have an <strong>n</strong> as the second character. You can use the underscore as a single character wildcard. </p>
-<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">FROM</span> world</span><br><span class="line"> <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&apos;_n%&apos;</span></span><br><span class="line"><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-keyword">name</span></span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>Find the countries that have &#x201C;t&#x201D; as the second character. </p>
-<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">FROM</span> world</span><br><span class="line"> <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&apos;_t%&apos;</span></span><br><span class="line"><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-keyword">name</span></span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>9). Les<strong>o</strong>th<strong>o</strong> and M<strong>o</strong>ld<strong>o</strong>va both have two o characters separated by two other characters. Find the countries that have two &#x201C;o&#x201D; characters separated by two others.</p>
-<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">FROM</span> world</span><br><span class="line"> <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&apos;%o__o%&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>10). Cuba and Togo have four characters names. Find the countries that have exactly four characters.</p>
-<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">FROM</span> world</span><br><span class="line"> <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&apos;____&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
-<h3 id="Harder-Questions"><a href="#Harder-Questions" class="headerlink" title="Harder Questions"></a>Harder Questions</h3><p>Well done for getting this far.</p>
-<p>The next questions are optional and only for students who are finding the basic questions too easy.</p>
-<p>11). The capital of <strong>Luxembourg</strong> is <strong>Luxembourg</strong>. Show all the countries where the capital is the same as the name of the country. Find the country where the name is the capital city.</p>
-<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span></span><br><span class="line">  <span class="hljs-keyword">FROM</span> world</span><br><span class="line"> <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> = capital</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>12). The capital of <strong>Mexico</strong> is <strong>Mexico City</strong>. Show all the countries where the capital has the country together with the word &#x201C;City&#x201D;. Find the country where the capital is the country plus &#x201C;City&#x201D;.</p>
-<p><em>The concat functio</em>n</p>
-<p>The function concat is short for concatenate - you can use it to combine two or more strings.</p>
-<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span></span><br><span class="line">  <span class="hljs-keyword">FROM</span> world</span><br><span class="line"> <span class="hljs-keyword">WHERE</span> capital=<span class="hljs-keyword">concat</span>(<span class="hljs-keyword">name</span>,<span class="hljs-string">&apos; City&apos;</span>)</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>13). Find the capital and the name where the capital includes the name of the country. </p>
-<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">select</span> capital, <span class="hljs-keyword">name</span> <span class="hljs-keyword">from</span> world</span><br><span class="line"><span class="hljs-keyword">where</span> capital <span class="hljs-keyword">like</span> <span class="hljs-keyword">concat</span>(<span class="hljs-string">&apos;%&apos;</span>,<span class="hljs-keyword">name</span>,<span class="hljs-string">&apos;%&apos;</span>)</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>14). Find the capital and the name where the capital is an extension of name of the country. You <em>should</em> include <strong>Mexico City</strong> as it is longer than <strong>Mexico</strong>. You <em>should not</em> include <strong>Luxembourg</strong> as the capital is the same as the country.</p>
-<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">select</span> capital, <span class="hljs-keyword">name</span> <span class="hljs-keyword">from</span> world</span><br><span class="line"><span class="hljs-keyword">where</span> capital <span class="hljs-keyword">like</span> <span class="hljs-keyword">concat</span>(<span class="hljs-keyword">name</span>,<span class="hljs-string">&apos;_%&apos;</span>)</span><br></pre></td></tr></tbody></table></figure><p></p>
-<p>15). For <strong>Monaco-Ville</strong> the name is <strong>Monaco</strong> and the extension is <strong>-Ville</strong>. Show the name and the extension where the capital is an extension of name of the country. You can use the SQL function <strong>REPLACE</strong>.</p>
-<p><em>REPLACE(f, s1, s2) returns the string f with all occurances of s1 replaced with s2.</em></p>
-<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">REPLACE</span>(<span class="hljs-string">&apos;vessel&apos;</span>,<span class="hljs-string">&apos;e&apos;</span>,<span class="hljs-string">&apos;a&apos;</span>) -&gt; <span class="hljs-string">&apos;vassal&apos;</span></span><br></pre></td></tr></tbody></table></figure><br><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">select</span> <span class="hljs-keyword">name</span>, <span class="hljs-keyword">replace</span>(capital, <span class="hljs-keyword">name</span> ,<span class="hljs-string">&apos;&apos;</span>) <span class="hljs-keyword">as</span> ext <span class="hljs-keyword">from</span> world</span><br><span class="line"><span class="hljs-keyword">where</span> capital <span class="hljs-keyword">like</span> <span class="hljs-keyword">concat</span>(<span class="hljs-keyword">name</span>,<span class="hljs-string">&apos;_%&apos;</span>)</span><br></pre></td></tr></tbody></table></figure><p></p>
-</body></html>
+        <html><head></head><body><h2 id="SELECT-names"><a href="#SELECT-names" class="headerlink" title="SELECT names"></a>SELECT names</h2><h3 id="https-sqlzoo-net-wiki-SELECT-names"><a href="#https-sqlzoo-net-wiki-SELECT-names" class="headerlink" title="https://sqlzoo.net/wiki/SELECT_names"></a><a href="https://sqlzoo.net/wiki/SELECT_names" target="_blank" rel="noopener">https://sqlzoo.net/wiki/SELECT_names</a></h3></body></html>
+        <p class="article-more-link">
+            <a href="/2018/08/15/2018-08-16-SELECT-names/#more">阅读更多</a>
+        </p>
     
     </div>
     

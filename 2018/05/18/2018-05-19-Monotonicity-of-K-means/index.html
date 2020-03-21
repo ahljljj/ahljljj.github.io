@@ -24,7 +24,7 @@
 <meta property="og:description" content="DescriptionGiven a set $S&#x3D;{x_1,\cdots,x_n}$ ,  we aim to (1)  partition the $n$ observations into $k(k\leq n)$ subsets $\{s_1,\cdots,s_k\}$, (2) minimize within-cluster sum of squares. Formally, the o">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2018-05-19T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-03-21T20:26:07.220Z">
+<meta property="article:modified_time" content="2020-03-21T21:16:59.556Z">
 <meta property="article:author" content="ahljljj">
 <meta property="article:tag" content="K-means">
 <meta name="twitter:card" content="summary">
@@ -142,13 +142,15 @@
         <span class="column is-narrow">
             
             
-            3 分钟 读完 (约 397 字)
+            3 分钟 读完 (约 398 字)
         </span>
         
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <html><head></head><body><h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>Given a set $S={x_1,\cdots,x_n}$ ,  we aim to (1)  partition the $n$ observations into $k(k\leq n)$ subsets $\{s_1,\cdots,s_k\}$, (2) minimize within-cluster sum of squares. Formally, the objective is to find:<br>$$<br>\begin{equation}\label{eqn:obj}\underset{s}{\text{argmin}}  \sum_{i=1}^k\sum_{x\in s_i} ||x-c_i||^2\end{equation}<br>$$<br>where $c_i$ is the mean (center of mass) of points in the subset $s_i$.  Now in order to achieve this goal, the K-means algorithm reads as follows, first, we randomly pick $k$ points $\{c_1,\cdots,c_k\}$ which are called centroids and label those points in $S$ that closer to $c_i$ than any other centroids by $c_i$.  Mathematically, we just performed a Voronoi partition on $S$  for the lattice $\{c_1,\cdots,c_k\}$. Next, we want to keep doing this Voronoi partition by updating our lattice so that \ref{eqn:obj} is monotonously decreasing. There are two steps here:</p>
+        <html><head></head><body><h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>Given a set $S={x_1,\cdots,x_n}$ ,  we aim to (1)  partition the $n$ observations into $k(k\leq n)$ subsets $\{s_1,\cdots,s_k\}$, (2) minimize within-cluster sum of squares. Formally, the objective is to find:<br>$$<br>\begin{equation}\label{eqn:obj}\underset{s}{\text{argmin}}  \sum_{i=1}^k\sum_{x\in s_i} ||x-c_i||^2\end{equation}<br>$$</p>
+<a id="more"></a>where $c_i$ is the mean (center of mass) of points in the subset $s_i$.  Now in order to achieve this goal, the K-means algorithm reads as follows, first, we randomly pick $k$ points $\\{c_1,\cdots,c_k\\}$ which are called centroids and label those points in $S$ that closer to $c_i$ than any other centroids by $c_i$.  Mathematically, we just performed a Voronoi partition on $S$  for the lattice $\\{c_1,\cdots,c_k\\}$. Next, we want to keep doing this Voronoi partition by updating our lattice so that \ref{eqn:obj} is monotonously decreasing. There are two steps here:
+
 <ul>
 <li><p>Update the centroid $c_i$ of each cluster by its center of mass, i.e.,<br>$$<br>\begin{equation}\label{eqn: centroid}c_i=\frac{1}{|s_i|}\sum_{x\in s_i} x;\end{equation}<br>$$</p>
 </li>

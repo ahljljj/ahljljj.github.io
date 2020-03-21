@@ -24,7 +24,7 @@
 <meta property="og:description" content="IntroductionThis analysis explores the relation between the gradient decent and stochastic gradient decent. Starting from the basic gradient decent method, we shall see that SGD actually decrease this">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2018-05-16T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-03-21T20:26:01.918Z">
+<meta property="article:modified_time" content="2020-03-21T21:15:33.486Z">
 <meta property="article:author" content="ahljljj">
 <meta property="article:tag" content="Stochastic Gradient">
 <meta property="article:tag" content="Calculus">
@@ -143,7 +143,7 @@
         <span class="column is-narrow">
             
             
-            5 分钟 读完 (约 743 字)
+            5 分钟 读完 (约 744 字)
         </span>
         
     </div>
@@ -152,8 +152,10 @@
         <html><head></head><body><h5 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h5><p>This analysis explores the relation between the gradient decent and stochastic gradient decent. Starting from the basic gradient decent method, we shall see that SGD actually decrease this energy on &#x201C;average&#x201D;.</p>
 <h5 id="Gradient-decent-a-math-approach"><a href="#Gradient-decent-a-math-approach" class="headerlink" title="Gradient decent: a math approach"></a>Gradient decent: a math approach</h5><p>Let&#x2019;s introduce the convex function first.</p>
 <ul>
-<li>A function $f:\mathbb{R}^n\rightarrow\mathbb{R}$ is convex if and only if for all $x,y$ $\in \mathbb{R}^n$ and $\lambda\in (0,1)$, we have<br>$$<br>f(\lambda x+(1-\lambda)y)\leq \lambda f(x)+(1-\lambda)f(y).<br>$$</li>
+<li>A function $f:\mathbb{R}^n\rightarrow\mathbb{R}$ is convex if and only if for all $x,y$ $\in \mathbb{R}^n$ and $\lambda\in (0,1)$, we have<script type="math/tex; mode=display">
+f(\lambda x+(1-\lambda)y)\leq \lambda f(x)+(1-\lambda)f(y).</script></li>
 </ul>
+<a id="more"></a>
 <p>A more mathematical definition is</p>
 <ul>
 <li>A function is said to be convex if and only if it&#x2019;s second derivative is always non-negative.</li>
@@ -164,12 +166,20 @@
 <li>Even there is a explicit formula for the extreme points, the time complexity is $O(n^3)$ , which is another thing we need worry about if we have a super big data set.</li>
 </ul>
 <p>The gradient decent in machine learning is to find the minimum/maximum of a convex function without calculating the inverse matrix of the derivative. There are many discussions about this context online, here I just take a few lines to talk about the basic idea from the point view of mathematics.</p>
-<p>Given a convex function ^[The solution may not be converge to the global minimum without convexity.]  $f:\mathbb{R}^n\rightarrow\mathbb{R}$, we consider the following ordinary differential equation:<br>$$<br>\begin{equation}\label{eqn:grad}\frac{dx}{dt}=-\nabla f,\quad x\in \mathbb{R}^n\end{equation}.<br>$$<br>We then look at the change of $f$ along the solution to  (\ref{eqn:grad}), and it turn out that $f$ is monotonicity decreasing along the solution, in fact,  the chain rule implies<br>$$<br>\begin{equation}\label{eqn:mono}\frac{df}{dt}=\frac{df}{dx}\cdot \frac{dx}{dt}=-||\nabla f||^2.\end{equation}<br>$$</p>
-<p>Therefore, ideally, $f$ should decreases and decreases until it attains a constant. Then the right hand side of (\ref{eqn:mono}) implies that this constant must be the global minimum. (\ref{eqn:mono}) also implies that $f$ decreases fastest if we move $x$ in the direction of its negative gradient. The word &#x201C;fastest&#x201D; here could be interpreted as &#x201C;most efficient&#x201D; somehow, and it basically comes from the fact that the product of two vectors $a,b$ maximize/minimize if and only if  $a,b$ are parallel to each other. Another thing should be note here is that <strong>there are many other directions that make</strong> $f$ <strong>decreases, they are just not as efficient as</strong> $\nabla f$ <strong>does</strong>. This is the foundation of  SGD!</p>
-<h5 id="Gradient-descent-in-regression"><a href="#Gradient-descent-in-regression" class="headerlink" title="Gradient descent in regression"></a>Gradient descent in regression</h5><p>Regression is not as mysterious as its name suggest.  Mathematically, it&#x2019;s just an algorithm to solve an optimization problem. Let&#x2019;s consider the simple case: linear regression. The <em>cost/loss</em> function is defined to be sum square error:<br>$$<br>\begin{equation}\label{eqn:linear}f(w)=||x\cdot w-y||^2\end{equation}<br>$$<br>where $x\in M^{N\times n}$ is the feature matrix, $w\in M^{n\times 1}$ is the weight vector, and $y\in M^{N\times 1}$ is the true value. We want to find a best $w$ that minimize $f$ based on the known observations $(x,y)$. In other words, we just need find the minimum of $f$ . To do this, we  simply discretize (\ref{eqn:mono}) as follows:</p>
-<p>$$<br>\frac{f_{n+1}-f_n}{h}=-||\nabla f||_n^2,<br>$$<br>the above expression can be rewritten as a standard iteration form:</p>
-<p>$$<br>\begin{equation}\label{alg:linear}f_{n+1}=f_n-h\cdot||\nabla f||_n^2,\end{equation}<br>$$<br>where $h$ is the time step, and $\nabla f$ can be easily obtained in most regression models, for instance, </p>
-<p>$$<br>\nabla f=-2x^T\cdot(x\cdot w-y)<br>$$<br> where $T$ is representing the transpose. Now if we ignore the numerical instabilities (usually caused by a big step-size $h$),  (\ref{eqn:mono}) implies that $f$ would monotonicity decreasing under (\ref{alg:linear})! </p>
+<p>Given a convex function ^[The solution may not be converge to the global minimum without convexity.]  $f:\mathbb{R}^n\rightarrow\mathbb{R}$, we consider the following ordinary differential equation:  </p>
+<script type="math/tex; mode=display">
+\begin{equation}\label{eqn:grad}\frac{dx}{dt}=-\nabla f,\quad x\in \mathbb{R}^n\end{equation}.</script><p>We then look at the change of $f$ along the solution to  (\ref{eqn:grad}), and it turn out that $f$ is monotonicity decreasing along the solution, in fact,  the chain rule implies</p>
+<script type="math/tex; mode=display">
+\begin{equation}\label{eqn:mono}\frac{df}{dt}=\frac{df}{dx}\cdot \frac{dx}{dt}=-||\nabla f||^2.\end{equation}</script><p>Therefore, ideally, $f$ should decreases and decreases until it attains a constant. Then the right hand side of (\ref{eqn:mono}) implies that this constant must be the global minimum. (\ref{eqn:mono}) also implies that $f$ decreases fastest if we move $x$ in the direction of its negative gradient. The word &#x201C;fastest&#x201D; here could be interpreted as &#x201C;most efficient&#x201D; somehow, and it basically comes from the fact that the product of two vectors $a,b$ maximize/minimize if and only if  $a,b$ are parallel to each other. Another thing should be note here is that <strong>there are many other directions that make</strong> $f$ <strong>decreases, they are just not as efficient as</strong> $\nabla f$ <strong>does</strong>. This is the foundation of  SGD!</p>
+<h5 id="Gradient-descent-in-regression"><a href="#Gradient-descent-in-regression" class="headerlink" title="Gradient descent in regression"></a>Gradient descent in regression</h5><p>Regression is not as mysterious as its name suggest.  Mathematically, it&#x2019;s just an algorithm to solve an optimization problem. Let&#x2019;s consider the simple case: linear regression. The <em>cost/loss</em> function is defined to be sum square error:</p>
+<script type="math/tex; mode=display">
+\begin{equation}\label{eqn:linear}f(w)=||x\cdot w-y||^2\end{equation}</script><p>where $x\in M^{N\times n}$ is the feature matrix, $w\in M^{n\times 1}$ is the weight vector, and $y\in M^{N\times 1}$ is the true value. We want to find a best $w$ that minimize $f$ based on the known observations $(x,y)$. In other words, we just need find the minimum of $f$ . To do this, we  simply discretize (\ref{eqn:mono}) as follows:</p>
+<script type="math/tex; mode=display">
+\frac{f_{n+1}-f_n}{h}=-||\nabla f||_n^2,</script><p>the above expression can be rewritten as a standard iteration form:</p>
+<script type="math/tex; mode=display">
+\begin{equation}\label{alg:linear}f_{n+1}=f_n-h\cdot||\nabla f||_n^2,\end{equation}</script><p>where $h$ is the time step, and $\nabla f$ can be easily obtained in most regression models, for instance, </p>
+<script type="math/tex; mode=display">
+\nabla f=-2x^T\cdot(x\cdot w-y)</script><p> where $T$ is representing the transpose. Now if we ignore the numerical instabilities (usually caused by a big step-size $h$),  (\ref{eqn:mono}) implies that $f$ would monotonicity decreasing under (\ref{alg:linear})! </p>
 <h4 id="Stochastic-descent-gradient-SGD"><a href="#Stochastic-descent-gradient-SGD" class="headerlink" title="Stochastic descent gradient (SGD)"></a>Stochastic descent gradient (SGD)</h4><p>Like gradient descent, SGD is another numerical algorithm to find the minimum/maximum.</p>
 <p>TBD.</p>
 </body></html>

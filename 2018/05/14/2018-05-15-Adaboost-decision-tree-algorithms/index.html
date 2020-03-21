@@ -24,7 +24,7 @@
 <meta property="og:description" content="This is brief introduction of Adaboosting algorithms after I finished the machine learning course in coursera. IntroductionA foundation question in machine learning is: can a set of weak classifiers b">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2018-05-15T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-03-21T20:25:50.820Z">
+<meta property="article:modified_time" content="2020-03-21T21:19:49.081Z">
 <meta property="article:author" content="ahljljj">
 <meta property="article:tag" content="Ensemble">
 <meta property="article:tag" content="Decision Tree">
@@ -143,7 +143,7 @@
         <span class="column is-narrow">
             
             
-            1 分钟 读完 (约 192 字)
+            1 分钟 读完 (约 193 字)
         </span>
         
     </div>
@@ -151,6 +151,8 @@
     
         <html><head></head><body><p><em>This is brief introduction of Adaboosting algorithms after I finished the machine learning course in coursera.</em></p>
 <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>A foundation question in machine learning is: <strong>can a set of weak classifiers be combined to create a strong classifier?</strong> The answer is yes. Adaboost was the first really successful boosting algorithm developed for binary classification.  More importantly, it is so mathematically beautiful and easy to implement that it would definitely be the starting point to learn boosting.  In this document,  we investigate this algorithm by boosting a set of decision tree algorithms. </p>
+<a id="more"></a>
+
 <h2 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h2><p>Let&#x2019;s consider the implementation of Adaboosting ensemble on decision tree model. Given a set of classifiers $${f_1,f_2,\cdot, f_k}$$,  where $f_i=\pm 1$ for $i=1,\cdots, k$ we want to find an appropriate linear combination of these classifiers  </p>
 <p>$$F_k=\text{sign}\sum_{i=1}^kw_i f_i$$ </p>
 <p>such that $F_T$ is better that any $f_t$ . <em>How to find these weights</em>: $w_1,\cdots,w_k$ ? Or even more basically, how to choose these classifiers ${f_1,f_2,\cdot, f_k}$?  </p>

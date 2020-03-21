@@ -145,21 +145,16 @@
         <span class="column is-narrow">
             
             
-            3 分钟 读完 (约 397 字)
+            3 分钟 读完 (约 398 字)
         </span>
         
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <html><head></head><body><h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>Given a set $S={x_1,\cdots,x_n}$ ,  we aim to (1)  partition the $n$ observations into $k(k\leq n)$ subsets $\{s_1,\cdots,s_k\}$, (2) minimize within-cluster sum of squares. Formally, the objective is to find:<br>$$<br>\begin{equation}\label{eqn:obj}\underset{s}{\text{argmin}}  \sum_{i=1}^k\sum_{x\in s_i} ||x-c_i||^2\end{equation}<br>$$<br>where $c_i$ is the mean (center of mass) of points in the subset $s_i$.  Now in order to achieve this goal, the K-means algorithm reads as follows, first, we randomly pick $k$ points $\{c_1,\cdots,c_k\}$ which are called centroids and label those points in $S$ that closer to $c_i$ than any other centroids by $c_i$.  Mathematically, we just performed a Voronoi partition on $S$  for the lattice $\{c_1,\cdots,c_k\}$. Next, we want to keep doing this Voronoi partition by updating our lattice so that \ref{eqn:obj} is monotonously decreasing. There are two steps here:</p>
-<ul>
-<li><p>Update the centroid $c_i$ of each cluster by its center of mass, i.e.,<br>$$<br>\begin{equation}\label{eqn: centroid}c_i=\frac{1}{|s_i|}\sum_{x\in s_i} x;\end{equation}<br>$$</p>
-</li>
-<li><p>Update the cluster labels by doing Voronoi partition on the new centroids set $\{c_i,\cdots,c_k \}$.</p>
-</li>
-</ul>
-<h2 id="Monotonicity"><a href="#Monotonicity" class="headerlink" title="Monotonicity"></a>Monotonicity</h2><p>The monotonicity of K-means algorithm essentially follows from the basic fact that any function attains the extreme points at the points where its derivative is vanishing. In fact, we consider the following energy:<br>$$<br>\begin{equation}\label{eqn:energy}f(c_1,\cdots,c_k)=\sum_{i=1}^k\sum_{x\in s_i} ||x-c_i||^2.\end{equation}<br>$$<br>The gradient of $f$ with respect to $c_i$ is<br>$$<br>\begin{equation}\label{eqn:grad}\frac{\partial f}{\partial c_i}=-2\sum_{x\in s_i}(x-c_i),\quad i=1,\cdots k.\end{equation}<br>$$<br>By pushing (\ref{eqn:grad}) $=0$ , it&#x2019;s clear that<br>$$<br>c_i=\frac{1}{|s_i|}\sum_{x\in s_i} x,<br>$$<br>which is exactly the centroid we chose in the above updating step. This also implies that K-means is actually a gradient descent algorithm. Unlike the gradient descent we have seen in many other context, here, we have a closed and simple form for the gradient. So we don&#x2019;t have to implement the algorithm to obtain the gradient but simply use this elegant math formulation (\ref{eqn: centroid}).</p>
-</body></html>
+        <html><head></head><body><h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>Given a set $S={x_1,\cdots,x_n}$ ,  we aim to (1)  partition the $n$ observations into $k(k\leq n)$ subsets $\{s_1,\cdots,s_k\}$, (2) minimize within-cluster sum of squares. Formally, the objective is to find:<br>$$<br>\begin{equation}\label{eqn:obj}\underset{s}{\text{argmin}}  \sum_{i=1}^k\sum_{x\in s_i} ||x-c_i||^2\end{equation}<br>$$</p></body></html>
+        <p class="article-more-link">
+            <a href="/2018/05/18/2018-05-19-Monotonicity-of-K-means/#more">阅读更多</a>
+        </p>
     
     </div>
     
