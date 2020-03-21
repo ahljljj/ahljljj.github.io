@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+    <meta charset="utf-8">
+<title>JOIN - ahljljj</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+
+
+<meta name="description" content="">
+
+
+
+
+
+    <meta name="description" content="JOINhttps:&#x2F;&#x2F;sqlzoo.net&#x2F;wiki&#x2F;The_JOIN_operationJOIN and UEFA EURO 2012This tutorial introduces JOIN which allows you to use data from two or more tables. The tables contain all matches and goals from U">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JOIN">
+<meta property="og:url" content="http://ahljljj.github.io/2018/08/17/2018-08-18-JOIN/index.html">
+<meta property="og:site_name" content="ahljljj">
+<meta property="og:description" content="JOINhttps:&#x2F;&#x2F;sqlzoo.net&#x2F;wiki&#x2F;The_JOIN_operationJOIN and UEFA EURO 2012This tutorial introduces JOIN which allows you to use data from two or more tables. The tables contain all matches and goals from U">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sqlzoo.net/w/images/c/ce/FootballERD.png">
+<meta property="article:published_time" content="2018-08-18T00:00:00.000Z">
+<meta property="article:modified_time" content="2020-03-21T20:27:31.625Z">
+<meta property="article:author" content="ahljljj">
+<meta property="article:tag" content="JOIN">
+<meta property="article:tag" content="HAVING AND GROUP BY">
+<meta property="article:tag" content="DISTINCT">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sqlzoo.net/w/images/c/ce/FootballERD.png">
+
+
+
+
+
+<link rel="icon" href="/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                <img src="/images/logo.png" alt="" height="28">
+                
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item "
+               href="/archives">Archives</a>
+            
+            <a class="navbar-item "
+               href="/categories/">Categories</a>
+            
+            <a class="navbar-item "
+               href="/tags/">Tags</a>
+            
+            <a class="navbar-item "
+               href="/about">About</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="搜索" href="javascript:;">
+                <i class="fas fa-search"></i>
+            </a>
+            
+            
+            
+            <a class="navbar-item" title="GitHub" href="https://github.com/ahljljj" target="_blank" rel="noopener">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+               
+            
+        </div>
+    </div>
+</nav>
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            JOIN
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2018-08-18T00:00:00.000Z" itemprop="datePublished">8月 17 2018</time>
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/SQL/">SQL</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            6 分钟 读完 (约 947 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <html><head></head><body><h2 id="JOIN"><a href="#JOIN" class="headerlink" title="JOIN"></a>JOIN</h2><h3 id="https-sqlzoo-net-wiki-The-JOIN-operation"><a href="#https-sqlzoo-net-wiki-The-JOIN-operation" class="headerlink" title="https://sqlzoo.net/wiki/The_JOIN_operation"></a><a href="https://sqlzoo.net/wiki/The_JOIN_operation" target="_blank" rel="noopener">https://sqlzoo.net/wiki/The_JOIN_operation</a></h3><h4 id="JOIN-and-UEFA-EURO-2012"><a href="#JOIN-and-UEFA-EURO-2012" class="headerlink" title="JOIN and UEFA EURO 2012"></a>JOIN and UEFA EURO 2012</h4><p>This tutorial introduces <code>JOIN</code> which allows you to use data from two or more tables. The tables contain all matches and goals from UEFA EURO 2012 Football Championship in Poland and Ukraine.</p>
+<p>The data is available (mysql format) at <a href="http://sqlzoo.net/euro2012.sql" target="_blank" rel="noopener">http://sqlzoo.net/euro2012.sql</a></p>
+<p>Summary</p>
+<p><img src="https://sqlzoo.net/w/images/c/ce/FootballERD.png" alt="File:FootballERD.png"> </p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>mdate</th>
+<th>stadium</th>
+<th>team1</th>
+<th>team2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1001</td>
+<td>8 June 2012</td>
+<td>National Stadium, Warsaw</td>
+<td>POL</td>
+<td>GRE</td>
+</tr>
+<tr>
+<td>1002</td>
+<td>8 June 2012</td>
+<td>Stadion Miejski (Wroclaw)</td>
+<td>RUS</td>
+<td>CZE</td>
+</tr>
+<tr>
+<td>1003</td>
+<td>12 June 2012</td>
+<td>Stadion Miejski (Wroclaw)</td>
+<td>GRE</td>
+<td>CZE</td>
+</tr>
+<tr>
+<td>1004</td>
+<td>12 June 2012</td>
+<td>National Stadium, Warsaw</td>
+<td>POL</td>
+<td>RUS</td>
+</tr>
+<tr>
+<td>&#x2026;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>matchid</th>
+<th>teamid</th>
+<th>player</th>
+<th>gtime</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1001</td>
+<td>POL</td>
+<td>Robert Lewandowski</td>
+<td>17</td>
+</tr>
+<tr>
+<td>1001</td>
+<td>GRE</td>
+<td>Dimitris Salpingidis</td>
+<td>51</td>
+</tr>
+<tr>
+<td>1002</td>
+<td>RUS</td>
+<td>Alan Dzagoev</td>
+<td>15</td>
+</tr>
+<tr>
+<td>1002</td>
+<td>RUS</td>
+<td>Roman Pavlyuchenko</td>
+<td>82</td>
+</tr>
+<tr>
+<td>&#x2026;</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>teamname</th>
+<th>coach</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>POL</td>
+<td>Poland</td>
+<td>Franciszek Smuda</td>
+</tr>
+<tr>
+<td>RUS</td>
+<td>Russia</td>
+<td>Dick Advocaat</td>
+</tr>
+<tr>
+<td>CZE</td>
+<td>Czech Republic</td>
+<td>Michal Bilek</td>
+</tr>
+<tr>
+<td>GRE</td>
+<td>Greece</td>
+<td>Fernando Santos</td>
+</tr>
+<tr>
+<td>&#x2026;</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>1). The first example shows the goal scored by a player with the last name &#x2018;Bender&#x2019;. The <code>*</code> says to list all the columns in the table - a shorter way of saying <code>matchid, teamid, player, gtime</code></p>
+<p>Modify it to show the <em>matchid</em> and <em>player</em> name for all goals scored by Germany. To identify German players, check for: <code>teamid = &apos;GER&apos;</code></p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> matchid, player <span class="hljs-keyword">FROM</span> goal </span><br><span class="line">  <span class="hljs-keyword">WHERE</span> teamid = <span class="hljs-string">&apos;GER&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>2). From the previous query you can see that Lars Bender&#x2019;s scored a goal in game 1012. Now we want to know what teams were playing in that match.</p>
+<p>Notice in the that the column <code>matchid</code> in the <code>goal</code> table corresponds to the <code>id</code> column in the <code>game</code> table. We can look up information about game 1012 by finding that row in the <strong>game</strong> table.</p>
+<p>Show id, stadium, team1, team2 for just game 1012</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">id</span>, stadium, team1, team2</span><br><span class="line">  <span class="hljs-keyword">FROM</span> game <span class="hljs-keyword">where</span> <span class="hljs-keyword">id</span>=<span class="hljs-number">1012</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>3). You can combine the two steps into a single query with a <code>JOIN</code>.</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> *</span><br><span class="line">  <span class="hljs-keyword">FROM</span> game <span class="hljs-keyword">JOIN</span> goal <span class="hljs-keyword">ON</span> (<span class="hljs-keyword">id</span>=matchid)</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>The <strong>FROM</strong> clause says to merge data from the goal table with that from the game table. The <strong>ON</strong> says how to figure out which rows in <strong>game</strong> go with which rows in <strong>goal</strong> - the <strong>id</strong> from <strong>goal</strong> must match <strong>matchid</strong> from <strong>game</strong>. (If we wanted to be more clear/specific we could say<br><code>ON (game.id=goal.matchid)</code></p>
+<p>The code below shows the player (from the goal) and stadium name (from the game table) for every goal scored.</p>
+<p>Modify it to show the player, teamid, stadium and mdate for every German goal.</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> player, teamid, stadium, mdate</span><br><span class="line">  <span class="hljs-keyword">FROM</span> game <span class="hljs-keyword">JOIN</span> goal <span class="hljs-keyword">ON</span> (<span class="hljs-keyword">id</span>=matchid) <span class="hljs-keyword">where</span> teamid=<span class="hljs-string">&apos;GER&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>4). Use the same <code>JOIN</code> as in the previous question.</p>
+<p>Show the team1, team2 and player for every goal scored by a player called Mario <code>player LIKE &apos;Mario%&apos;</code></p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> team1, team2, player <span class="hljs-keyword">FROM</span> game</span><br><span class="line"><span class="hljs-keyword">JOIN</span> goal <span class="hljs-keyword">ON</span> <span class="hljs-keyword">id</span>=matchid</span><br><span class="line"><span class="hljs-keyword">WHERE</span> player <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&apos;Mario%&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>5). The table <code>eteam</code> gives details of every national team including the coach. You can <code>JOIN</code> <code>goal</code> to <code>eteam</code>using the phrase <code>goal JOIN eteam on teamid=id</code></p>
+<p>Show <code>player</code>, <code>teamid</code>, <code>coach</code>, <code>gtime</code> for all goals scored in the first 10 minutes <code>gtime&lt;=10</code></p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> player, teamid, coach, gtime</span><br><span class="line">  <span class="hljs-keyword">FROM</span> goal <span class="hljs-keyword">join</span> eteam <span class="hljs-keyword">on</span> teamid=<span class="hljs-keyword">id</span></span><br><span class="line"> <span class="hljs-keyword">WHERE</span> gtime&lt;=<span class="hljs-number">10</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>6). To <code>JOIN</code> <code>game</code> with <code>eteam</code> you could use either<br><code>game JOIN eteam ON (team1=eteam.id)</code> or <code>game JOIN eteam ON (team2=eteam.id)</code></p>
+<p>Notice that because <code>id</code> is a column name in both <code>game</code> and <code>eteam</code> you must specify <code>eteam.id</code> instead of just <code>id</code></p>
+<p>List the the dates of the matches and the name of the team in which &#x2018;Fernando Santos&#x2019; was the team1 coach.</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> mdate, teamname <span class="hljs-keyword">FROM</span> game</span><br><span class="line"><span class="hljs-keyword">JOIN</span> eteam <span class="hljs-keyword">ON</span> team1 = eteam.id</span><br><span class="line"><span class="hljs-keyword">WHERE</span> coach = <span class="hljs-string">&apos;Fernando Santos&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>7). List the player for every goal scored in a game where the stadium was &#x2018;National Stadium, Warsaw&#x2019; </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> player <span class="hljs-keyword">FROM</span> goal</span><br><span class="line"><span class="hljs-keyword">JOIN</span> game <span class="hljs-keyword">ON</span> matchid = <span class="hljs-keyword">id</span></span><br><span class="line"><span class="hljs-keyword">WHERE</span> stadium = <span class="hljs-string">&apos;National Stadium, Warsaw&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<h3 id="More-difficult-questions"><a href="#More-difficult-questions" class="headerlink" title="More difficult questions"></a>More difficult questions</h3><p>8).  The example query shows all goals scored in the Germany-Greece quarterfinal.</p>
+<p>Instead show the <strong>name</strong> of all players who scored a goal against Germany.</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> player</span><br><span class="line">  <span class="hljs-keyword">FROM</span> game <span class="hljs-keyword">JOIN</span> goal <span class="hljs-keyword">ON</span> matchid = <span class="hljs-keyword">id</span> </span><br><span class="line">    <span class="hljs-keyword">WHERE</span> (team1=<span class="hljs-string">&apos;GER&apos;</span> <span class="hljs-keyword">or</span> team2=<span class="hljs-string">&apos;GER&apos;</span>) <span class="hljs-keyword">and</span> teamid != <span class="hljs-string">&apos;GER&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>9). Show <strong>teamname</strong> and the total number of goals scored.</p>
+<p><u>COUNT and GROUP BY</u></p>
+<p>You should COUNT(*) in the SELECT line and GROUP BY teamname</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> teamname, <span class="hljs-keyword">COUNT</span>(teamid)</span><br><span class="line">  <span class="hljs-keyword">FROM</span> eteam <span class="hljs-keyword">JOIN</span> goal <span class="hljs-keyword">ON</span> <span class="hljs-keyword">id</span>=teamid</span><br><span class="line"><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> teamname</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>10). Show the stadium and the number of goals scored in each stadium. </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> stadium, <span class="hljs-keyword">COUNT</span>(teamid)</span><br><span class="line">  <span class="hljs-keyword">FROM</span> game <span class="hljs-keyword">JOIN</span> goal <span class="hljs-keyword">ON</span> <span class="hljs-keyword">id</span> = matchid</span><br><span class="line"><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> stadium</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>11). For every match involving &#x2018;POL&#x2019;, show the matchid, date and the number of goals scored. </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> matchid, mdate, <span class="hljs-keyword">COUNT</span>(teamid)</span><br><span class="line">  <span class="hljs-keyword">FROM</span> game <span class="hljs-keyword">JOIN</span> goal <span class="hljs-keyword">ON</span> matchid = <span class="hljs-keyword">id</span> </span><br><span class="line"> <span class="hljs-keyword">WHERE</span> (team1 = <span class="hljs-string">&apos;POL&apos;</span> <span class="hljs-keyword">OR</span> team2 = <span class="hljs-string">&apos;POL&apos;</span>)</span><br><span class="line"><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> matchid, mdate</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>12). For every match where &#x2018;GER&#x2019; scored, show matchid, match date and the number of goals scored by &#x2018;GER&#x2019; </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> matchid, mdate, <span class="hljs-keyword">COUNT</span>(teamid) <span class="hljs-keyword">FROM</span> game</span><br><span class="line"><span class="hljs-keyword">JOIN</span> goal <span class="hljs-keyword">ON</span> <span class="hljs-keyword">id</span> = matchid</span><br><span class="line"><span class="hljs-keyword">WHERE</span> teamid = <span class="hljs-string">&apos;GER&apos;</span></span><br><span class="line"><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> matchid, mdate</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>13). List every match with the goals scored by each team as shown. This will use &#x201C;<a href="https://sqlzoo.net/wiki/CASE" target="_blank" rel="noopener">CASE WHEN</a>&#x201C; which has not been explained in any previous exercises.</p>
+<table>
+<thead>
+<tr>
+<th>mdate</th>
+<th>team1</th>
+<th>score1</th>
+<th>team2</th>
+<th>score2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1 July 2012</td>
+<td>ESP</td>
+<td>4</td>
+<td>ITA</td>
+<td>0</td>
+</tr>
+<tr>
+<td>10 June 2012</td>
+<td>ESP</td>
+<td>1</td>
+<td>ITA</td>
+<td>1</td>
+</tr>
+<tr>
+<td>10 June 2012</td>
+<td>IRL</td>
+<td>1</td>
+<td>CRO</td>
+<td>3</td>
+</tr>
+<tr>
+<td>&#x2026;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>Notice in the query given every goal is listed. If it was a team1 goal then a 1 appears in score1, otherwise there is a 0. You could SUM this column to get a count of the goals scored by team1. <strong>Sort your result by mdate, matchid, team1 and team2.</strong></p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> mdate, team1,</span><br><span class="line">  <span class="hljs-keyword">SUM</span>(<span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> teamid=team1 <span class="hljs-keyword">THEN</span> <span class="hljs-number">1</span> <span class="hljs-keyword">ELSE</span> <span class="hljs-number">0</span> <span class="hljs-keyword">END</span>) <span class="hljs-keyword">AS</span> score1, </span><br><span class="line">  team2,</span><br><span class="line">  <span class="hljs-keyword">SUM</span>(<span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> teamid=team2 <span class="hljs-keyword">THEN</span> <span class="hljs-number">1</span> <span class="hljs-keyword">ELSE</span> <span class="hljs-number">0</span> <span class="hljs-keyword">END</span>) <span class="hljs-keyword">AS</span> score2</span><br><span class="line">  <span class="hljs-keyword">FROM</span> game <span class="hljs-keyword">left</span> <span class="hljs-keyword">JOIN</span> goal <span class="hljs-keyword">ON</span> matchid = <span class="hljs-keyword">id</span></span><br><span class="line"><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> mdate, team1, team2</span><br><span class="line"><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> mdate, matchid, team1, team2</span><br></pre></td></tr></tbody></table></figure><p></p>
+</body></html>
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/JOIN/">#JOIN</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/HAVING-AND-GROUP-BY/">#HAVING AND GROUP BY</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/DISTINCT/">#DISTINCT</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/2018/08/22/2018-08-23-NSS-Tutorial/">NSS Tutorial</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2018/08/17/2018-08-18-SUM-and-COUNT/">SUM and COUNT</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+<div class="comments">
+    <h3 class="title is-4">评论</h3>
+    
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://ahljljj.github.io/2018/08/17/2018-08-18-JOIN/';
+        this.page.identifier = '2018/08/17/2018-08-18-JOIN/';
+        
+        this.language = 'zh';
+        
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'ahljljj' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+</div>
+</div>
+
+    </div>
+</section>
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2020 ahljljj&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            <div class="column is-narrow">
+                <div class="columns is-mobile is-multiline is-centered">
+                
+                    
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/ahljljj" target="_blank" rel="noopener">
+                    
+                    GitHub
+                    
+                </a>
+                
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+
+<script src="/js/script.js"></script>
+
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="站内搜索" />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+    
+</body>
+</html>

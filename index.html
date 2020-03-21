@@ -86,6 +86,12 @@
                href="/archives">Archives</a>
             
             <a class="navbar-item "
+               href="/categories/">Categories</a>
+            
+            <a class="navbar-item "
+               href="/tags/">Tags</a>
+            
+            <a class="navbar-item "
                href="/about">About</a>
             
         </div>
@@ -156,37 +162,134 @@
         <article class="article content gallery" itemscope itemprop="blogPost">
     <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
         
-            <a href="/2018/05/18/2018-05-19-Monotonicity-of-K-means/" itemprop="url">Monotonicity of K-means</a>
+            <a href="/2018/08/22/2018-08-23-Using-Null/" itemprop="url">Using Null</a>
         
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
-            <time datetime="2018-05-19T00:00:00.000Z" itemprop="datePublished">5月 18 2018</time>
+            <time datetime="2018-08-23T00:00:00.000Z" itemprop="datePublished">8月 22 2018</time>
         </span>
         
         <span class="column is-narrow article-category">
             <i class="far fa-folder"></i>
-            <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a><span>></span><a class="article-category-link" href="/categories/Algorithm/Math/">Math</a>
+            <a class="article-category-link" href="/categories/SQL/">SQL</a>
         </span>
         
         
         <span class="column is-narrow">
             
             
-            3 分钟 读完 (约 397 字)
+            3 分钟 读完 (约 376 字)
         </span>
         
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <html><head><!-- hexo-inject:begin --><!-- hexo-inject:end --></head><body><h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>Given a set $S={x_1,\cdots,x_n}$ ,  we aim to (1)  partition the $n$ observations into $k(k\leq n)$ subsets $\{s_1,\cdots,s_k\}$, (2) minimize within-cluster sum of squares. Formally, the objective is to find:<br>$$<br>\begin{equation}\label{eqn:obj}\underset{s}{\text{argmin}}  \sum_{i=1}^k\sum_{x\in s_i} ||x-c_i||^2\end{equation}<br>$$<br>where $c_i$ is the mean (center of mass) of points in the subset $s_i$.  Now in order to achieve this goal, the K-means algorithm reads as follows, first, we randomly pick $k$ points $\{c_1,\cdots,c_k\}$ which are called centroids and label those points in $S$ that closer to $c_i$ than any other centroids by $c_i$.  Mathematically, we just performed a Voronoi partition on $S$  for the lattice $\{c_1,\cdots,c_k\}$. Next, we want to keep doing this Voronoi partition by updating our lattice so that \ref{eqn:obj} is monotonously decreasing. There are two steps here:</p>
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><ul>
-<li><p>Update the centroid $c_i$ of each cluster by its center of mass, i.e.,<br>$$<br>\begin{equation}\label{eqn: centroid}c_i=\frac{1}{|s_i|}\sum_{x\in s_i} x;\end{equation}<br>$$</p>
-</li>
-<li><p>Update the cluster labels by doing Voronoi partition on the new centroids set $\{c_i,\cdots,c_k \}$.</p>
-</li>
-</ul>
-<h2 id="Monotonicity"><a href="#Monotonicity" class="headerlink" title="Monotonicity"></a>Monotonicity</h2><p>The monotonicity of K-means algorithm essentially follows from the basic fact that any function attains the extreme points at the points where its derivative is vanishing. In fact, we consider the following energy:<br>$$<br>\begin{equation}\label{eqn:energy}f(c_1,\cdots,c_k)=\sum_{i=1}^k\sum_{x\in s_i} ||x-c_i||^2.\end{equation}<br>$$<br>The gradient of $f$ with respect to $c_i$ is<br>$$<br>\begin{equation}\label{eqn:grad}\frac{\partial f}{\partial c_i}=-2\sum_{x\in s_i}(x-c_i),\quad i=1,\cdots k.\end{equation}<br>$$<br>By pushing (\ref{eqn:grad}) $=0$ , it&#x2019;s clear that<br>$$<br>c_i=\frac{1}{|s_i|}\sum_{x\in s_i} x,<br>$$<br>which is exactly the centroid we chose in the above updating step. This also implies that K-means is actually a gradient descent algorithm. Unlike the gradient descent we have seen in many other context, here, we have a closed and simple form for the gradient. So we don&#x2019;t have to implement the algorithm to obtain the gradient but simply use this elegant math formulation (\ref{eqn: centroid}).</p><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+        <html><head><!-- hexo-inject:begin --><!-- hexo-inject:end --></head><body><h2 id="Using-Null"><a href="#Using-Null" class="headerlink" title="Using Null"></a>Using Null</h2><h3 id="https-sqlzoo-net-wiki-Using-Null"><a href="#https-sqlzoo-net-wiki-Using-Null" class="headerlink" title="https://sqlzoo.net/wiki/Using_Null"></a><a href="https://sqlzoo.net/wiki/Using_Null" target="_blank" rel="noopener">https://sqlzoo.net/wiki/Using_Null</a></h3><h3 id="Teachers-and-Departments"><a href="#Teachers-and-Departments" class="headerlink" title="Teachers and Departments"></a>Teachers and Departments</h3><p>The school includes many departments. Most teachers work exclusively for a single department. Some teachers have no department.</p>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><table>
+<thead>
+<tr>
+<th>id</th>
+<th>dept</th>
+<th>name</th>
+<th>phone</th>
+<th>mobile</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>101</td>
+<td>1</td>
+<td>Shrivell</td>
+<td>2753</td>
+<td>07986 555 1234</td>
+</tr>
+<tr>
+<td>102</td>
+<td>1</td>
+<td>Throd</td>
+<td>2754</td>
+<td>07122 555 1920</td>
+</tr>
+<tr>
+<td>103</td>
+<td>1</td>
+<td>Splint</td>
+<td>2293</td>
+<td></td>
+</tr>
+<tr>
+<td>104</td>
+<td></td>
+<td>Spiregrain</td>
+<td>3287</td>
+<td></td>
+</tr>
+<tr>
+<td>105</td>
+<td>2</td>
+<td>Cutflower</td>
+<td>3212</td>
+<td>07996 555 6574</td>
+</tr>
+<tr>
+<td>106</td>
+<td></td>
+<td>Deadyawn</td>
+<td>3345</td>
+<td></td>
+</tr>
+<tr>
+<td>&#x2026;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>name</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Computing</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Design</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Engineering</td>
+</tr>
+<tr>
+<td>&#x2026;</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>1). List the teachers who have NULL for their department.</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> teacher.name <span class="hljs-keyword">FROM</span> teacher</span><br><span class="line"><span class="hljs-keyword">WHERE</span> dept <span class="hljs-keyword">IS</span> <span class="hljs-literal">NULL</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>2). Note the INNER JOIN misses the teachers with no department and the departments with no teacher.</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> teacher.name, dept.name</span><br><span class="line"> <span class="hljs-keyword">FROM</span> teacher <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> dept</span><br><span class="line">           <span class="hljs-keyword">ON</span> (teacher.dept=dept.id)</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>3). Use a different JOIN so that all teachers are listed.</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> teacher.name, dept.name <span class="hljs-keyword">FROM</span> teacher</span><br><span class="line"><span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">JOIN</span> dept <span class="hljs-keyword">ON</span></span><br><span class="line">teacher.dept=dept.id</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>4). Use a different JOIN so that all departments are listed.</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> teacher.name, dept.name <span class="hljs-keyword">FROM</span> teacher</span><br><span class="line"><span class="hljs-keyword">RIGHT</span> <span class="hljs-keyword">JOIN</span> dept <span class="hljs-keyword">ON</span></span><br><span class="line">teacher.dept=dept.id</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>5). Use COALESCE to print the mobile number. Use the number &#x2018;07986 444 2266&#x2019; if there is no number given.<strong>Show teacher name and mobile number or &#x2018;07986 444 2266&#x2019;</strong></p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span>, <span class="hljs-keyword">COALESCE</span>(mobile, <span class="hljs-string">&apos;07986 444 2266&apos;</span>) <span class="hljs-keyword">FROM</span> teacher</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>6). Use the COALESCE function and a LEFT JOIN to print the teacher <strong>name</strong> and department name. Use the string &#x2018;None&#x2019; where there is no department.</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> teacher.name, <span class="hljs-keyword">COALESCE</span>(dept.name,<span class="hljs-string">&apos;None&apos;</span>) <span class="hljs-keyword">FROM</span> teacher</span><br><span class="line"><span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">JOIN</span> dept <span class="hljs-keyword">ON</span></span><br><span class="line">teacher.dept=dept.id</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>7). Use COUNT to show the number of teachers and the number of mobile phones.</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">COUNT</span>(<span class="hljs-keyword">name</span>), <span class="hljs-keyword">COUNT</span>(mobile) <span class="hljs-keyword">FROM</span> teacher</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>8). Use COUNT and GROUP BY <strong>dept.name</strong> to show each department and the number of staff. Use a RIGHT JOIN to ensure that the Engineering department is listed.</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> dept.name, <span class="hljs-keyword">COUNT</span>(teacher.name) <span class="hljs-keyword">FROM</span> teacher</span><br><span class="line"><span class="hljs-keyword">RIGHT</span> <span class="hljs-keyword">JOIN</span> dept <span class="hljs-keyword">ON</span> teacher.dept = dept.id</span><br><span class="line"><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> dept.name</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>9). Use CASE to show the <strong>name</strong> of each teacher followed by &#x2018;Sci&#x2019; if the teacher is in <strong>dept</strong> 1 or 2 and &#x2018;Art&#x2019; otherwise.</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span>, </span><br><span class="line"><span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> dept <span class="hljs-keyword">in</span> (<span class="hljs-number">1</span>,<span class="hljs-number">2</span>) <span class="hljs-keyword">THEN</span> <span class="hljs-string">&apos;Sci&apos;</span></span><br><span class="line">     <span class="hljs-keyword">ELSE</span> <span class="hljs-string">&apos;Art&apos;</span></span><br><span class="line"><span class="hljs-keyword">END</span></span><br><span class="line"><span class="hljs-keyword">FROM</span> teacher</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>10). Use CASE to show the name of each teacher followed by &#x2018;Sci&#x2019; if the teacher is in dept 1 or 2, show &#x2018;Art&#x2019; if the teacher&#x2019;s dept is 3 and &#x2018;None&#x2019; otherwise.</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span>, </span><br><span class="line"><span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> dept <span class="hljs-keyword">in</span> (<span class="hljs-number">1</span>,<span class="hljs-number">2</span>) <span class="hljs-keyword">THEN</span> <span class="hljs-string">&apos;Sci&apos;</span></span><br><span class="line">     <span class="hljs-keyword">WHEN</span> dept=<span class="hljs-number">3</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&apos;Art&apos;</span></span><br><span class="line">     <span class="hljs-keyword">ELSE</span> <span class="hljs-string">&apos;None&apos;</span></span><br><span class="line"><span class="hljs-keyword">END</span></span><br><span class="line"><span class="hljs-keyword">FROM</span> teacher</span><br></pre></td></tr></tbody></table></figure><p></p><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -218,52 +321,67 @@
         <article class="article content gallery" itemscope itemprop="blogPost">
     <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
         
-            <a href="/2018/05/15/2018-05-16-Stochastic-gradient-decent-and-gradient-decent/" itemprop="url">Stochastic gradient decent and gradient decent</a>
+            <a href="/2018/08/22/2018-08-23-More-JOIN-operations/" itemprop="url">More JOIN operations</a>
         
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
-            <time datetime="2018-05-16T00:00:00.000Z" itemprop="datePublished">5月 15 2018</time>
+            <time datetime="2018-08-23T00:00:00.000Z" itemprop="datePublished">8月 22 2018</time>
         </span>
         
         <span class="column is-narrow article-category">
             <i class="far fa-folder"></i>
-            <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+            <a class="article-category-link" href="/categories/SQL/">SQL</a>
         </span>
         
         
         <span class="column is-narrow">
             
             
-            5 分钟 读完 (约 743 字)
+            4 分钟 读完 (约 646 字)
         </span>
         
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <html><head></head><body><h5 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h5><p>This analysis explores the relation between the gradient decent and stochastic gradient decent. Starting from the basic gradient decent method, we shall see that SGD actually decrease this energy on &#x201C;average&#x201D;.</p>
-<h5 id="Gradient-decent-a-math-approach"><a href="#Gradient-decent-a-math-approach" class="headerlink" title="Gradient decent: a math approach"></a>Gradient decent: a math approach</h5><p>Let&#x2019;s introduce the convex function first.</p>
-<ul>
-<li>A function $f:\mathbb{R}^n\rightarrow\mathbb{R}$ is convex if and only if for all $x,y$ $\in \mathbb{R}^n$ and $\lambda\in (0,1)$, we have<br>$$<br>f(\lambda x+(1-\lambda)y)\leq \lambda f(x)+(1-\lambda)f(y).<br>$$</li>
-</ul>
-<p>A more mathematical definition is</p>
-<ul>
-<li>A function is said to be convex if and only if it&#x2019;s second derivative is always non-negative.</li>
-</ul>
-<p>A simple example is the parabola equation $x^2$, and as you could see from the graph, this function has a unique minimum. The reason that we restricted our attention on the convex function is because its minimum could be easily calculated. In theory, to get the minimum/maximum of a function, we could simply set the derivative of it to zero and solve the equation(s).  However, there are two potential issues here.</p>
-<ul>
-<li>There may be no closed form for the solutions especially when we have a complicated model.</li>
-<li>Even there is a explicit formula for the extreme points, the time complexity is $O(n^3)$ , which is another thing we need worry about if we have a super big data set.</li>
-</ul>
-<p>The gradient decent in machine learning is to find the minimum/maximum of a convex function without calculating the inverse matrix of the derivative. There are many discussions about this context online, here I just take a few lines to talk about the basic idea from the point view of mathematics.</p>
-<p>Given a convex function ^[The solution may not be converge to the global minimum without convexity.]  $f:\mathbb{R}^n\rightarrow\mathbb{R}$, we consider the following ordinary differential equation:<br>$$<br>\begin{equation}\label{eqn:grad}\frac{dx}{dt}=-\nabla f,\quad x\in \mathbb{R}^n\end{equation}.<br>$$<br>We then look at the change of $f$ along the solution to  (\ref{eqn:grad}), and it turn out that $f$ is monotonicity decreasing along the solution, in fact,  the chain rule implies<br>$$<br>\begin{equation}\label{eqn:mono}\frac{df}{dt}=\frac{df}{dx}\cdot \frac{dx}{dt}=-||\nabla f||^2.\end{equation}<br>$$</p>
-<p>Therefore, ideally, $f$ should decreases and decreases until it attains a constant. Then the right hand side of (\ref{eqn:mono}) implies that this constant must be the global minimum. (\ref{eqn:mono}) also implies that $f$ decreases fastest if we move $x$ in the direction of its negative gradient. The word &#x201C;fastest&#x201D; here could be interpreted as &#x201C;most efficient&#x201D; somehow, and it basically comes from the fact that the product of two vectors $a,b$ maximize/minimize if and only if  $a,b$ are parallel to each other. Another thing should be note here is that <strong>there are many other directions that make</strong> $f$ <strong>decreases, they are just not as efficient as</strong> $\nabla f$ <strong>does</strong>. This is the foundation of  SGD!</p>
-<h5 id="Gradient-descent-in-regression"><a href="#Gradient-descent-in-regression" class="headerlink" title="Gradient descent in regression"></a>Gradient descent in regression</h5><p>Regression is not as mysterious as its name suggest.  Mathematically, it&#x2019;s just an algorithm to solve an optimization problem. Let&#x2019;s consider the simple case: linear regression. The <em>cost/loss</em> function is defined to be sum square error:<br>$$<br>\begin{equation}\label{eqn:linear}f(w)=||x\cdot w-y||^2\end{equation}<br>$$<br>where $x\in M^{N\times n}$ is the feature matrix, $w\in M^{n\times 1}$ is the weight vector, and $y\in M^{N\times 1}$ is the true value. We want to find a best $w$ that minimize $f$ based on the known observations $(x,y)$. In other words, we just need find the minimum of $f$ . To do this, we  simply discretize (\ref{eqn:mono}) as follows:</p>
-<p>$$<br>\frac{f_{n+1}-f_n}{h}=-||\nabla f||_n^2,<br>$$<br>the above expression can be rewritten as a standard iteration form:</p>
-<p>$$<br>\begin{equation}\label{alg:linear}f_{n+1}=f_n-h\cdot||\nabla f||_n^2,\end{equation}<br>$$<br>where $h$ is the time step, and $\nabla f$ can be easily obtained in most regression models, for instance, </p>
-<p>$$<br>\nabla f=-2x^T\cdot(x\cdot w-y)<br>$$<br> where $T$ is representing the transpose. Now if we ignore the numerical instabilities (usually caused by a big step-size $h$),  (\ref{eqn:mono}) implies that $f$ would monotonicity decreasing under (\ref{alg:linear})! </p>
-<h4 id="Stochastic-descent-gradient-SGD"><a href="#Stochastic-descent-gradient-SGD" class="headerlink" title="Stochastic descent gradient (SGD)"></a>Stochastic descent gradient (SGD)</h4><p>Like gradient descent, SGD is another numerical algorithm to find the minimum/maximum.</p>
-<p>TBD.</p>
+        <html><head></head><body><h2 id="More-JOIN-operations"><a href="#More-JOIN-operations" class="headerlink" title="More JOIN operations"></a>More JOIN operations</h2><p>This tutorial introduces the notion of a join. The database consists of three tables <code>movie</code> , <code>actor</code> and <code>casting</code> .</p>
+<p><img src="https://sqlzoo.net/w/images/1/10/Movie-er.png" alt="Movie-er.png"></p>
+<p>1). List the films where the <strong>yr</strong> is 1962 [Show <strong>id</strong>, <strong>title</strong>]</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">id</span>, title</span><br><span class="line"> <span class="hljs-keyword">FROM</span> movie</span><br><span class="line"> <span class="hljs-keyword">WHERE</span> yr=<span class="hljs-number">1962</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>2). Give year of &#x2018;Citizen Kane&#x2019;.</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> yr <span class="hljs-keyword">FROM</span> movie </span><br><span class="line"><span class="hljs-keyword">WHERE</span> title=<span class="hljs-string">&apos;Citizen Kane&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>3). List all of the Star Trek movies, include the <strong>id</strong>, <strong>title</strong> and <strong>yr</strong> (all of these movies include the words Star Trek in the title). Order results by year.</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">id</span>, title, yr <span class="hljs-keyword">FROM</span> movie</span><br><span class="line"><span class="hljs-keyword">WHERE</span> title <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&apos;%Star Trek%&apos;</span></span><br><span class="line"><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> yr</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>4). What <strong>id</strong> number does the actor &#x2018;Glenn Close&#x2019; have?</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">id</span> <span class="hljs-keyword">FROM</span> actor</span><br><span class="line"><span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span>=<span class="hljs-string">&apos;Glenn Close&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>5). What is the <strong>id</strong> of the film &#x2018;Casablanca&#x2019;</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">id</span> <span class="hljs-keyword">FROM</span> movie</span><br><span class="line"><span class="hljs-keyword">WHERE</span> title=<span class="hljs-string">&apos;Casablanca&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>6). Obtain the cast list for &#x2018;Casablanca&#x2019;.</p>
+<p><em>what is a cast list?</em></p>
+<p>The cast list is the names of the actors who were in the movie.</p>
+<p>Use <strong>movieid=11768</strong>, (or whatever value you got from the previous question)</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">FROM</span> actor </span><br><span class="line"><span class="hljs-keyword">JOIN</span> casting <span class="hljs-keyword">ON</span> actor.id= actorid</span><br><span class="line"><span class="hljs-keyword">JOIN</span> movie <span class="hljs-keyword">ON</span> movieid=movie.id</span><br><span class="line"><span class="hljs-keyword">WHERE</span> title=<span class="hljs-string">&apos;Casablanca&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>7). Obtain the cast list for the film &#x2018;Alien&#x2019;</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">FROM</span> actor </span><br><span class="line"><span class="hljs-keyword">JOIN</span> casting <span class="hljs-keyword">ON</span> actor.id= actorid</span><br><span class="line"><span class="hljs-keyword">JOIN</span> movie <span class="hljs-keyword">ON</span> movieid=movie.id</span><br><span class="line"><span class="hljs-keyword">WHERE</span> title= <span class="hljs-string">&apos;Alien&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>8). List the films in which &#x2018;Harrison Ford&#x2019; has appeared</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> title <span class="hljs-keyword">FROM</span> movie</span><br><span class="line"><span class="hljs-keyword">JOIN</span> casting <span class="hljs-keyword">ON</span> movie.id= movieid</span><br><span class="line"><span class="hljs-keyword">JOIN</span> actor <span class="hljs-keyword">ON</span> actorid=actor.id</span><br><span class="line"><span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span>=<span class="hljs-string">&apos;Harrison Ford&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>9). List the films where &#x2018;Harrison Ford&#x2019; has appeared - but not in the starring role. [Note: the <strong>ord</strong> field of casting gives the position of the actor. If ord=1 then this actor is in the starring role]</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> title <span class="hljs-keyword">FROM</span> movie</span><br><span class="line"><span class="hljs-keyword">JOIN</span> casting <span class="hljs-keyword">ON</span> movie.id= movieid</span><br><span class="line"><span class="hljs-keyword">JOIN</span> actor <span class="hljs-keyword">ON</span> actorid=actor.id</span><br><span class="line"><span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span>=<span class="hljs-string">&apos;Harrison Ford&apos;</span> <span class="hljs-keyword">AND</span> <span class="hljs-keyword">ord</span>!=<span class="hljs-number">1</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>10). List the films together with the leading star for all 1962 films.</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> title, <span class="hljs-keyword">name</span> <span class="hljs-keyword">FROM</span> movie</span><br><span class="line"><span class="hljs-keyword">JOIN</span> casting <span class="hljs-keyword">ON</span> movie.id= movieid</span><br><span class="line"><span class="hljs-keyword">JOIN</span> actor <span class="hljs-keyword">ON</span> actorid=actor.id</span><br><span class="line"><span class="hljs-keyword">WHERE</span> yr=<span class="hljs-number">1962</span> <span class="hljs-keyword">AND</span> <span class="hljs-keyword">ord</span>=<span class="hljs-number">1</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>11). Which were the busiest years for &#x2018;John Travolta&#x2019;, show the year and the number of movies he made each year for any year in which he made more than 2 movies.</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> yr,<span class="hljs-keyword">COUNT</span>(title) <span class="hljs-keyword">FROM</span></span><br><span class="line">  movie <span class="hljs-keyword">JOIN</span> casting <span class="hljs-keyword">ON</span> movie.id=movieid</span><br><span class="line">         <span class="hljs-keyword">JOIN</span> actor   <span class="hljs-keyword">ON</span> actorid=actor.id</span><br><span class="line"><span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span>=<span class="hljs-string">&apos;John Travolta&apos;</span></span><br><span class="line"><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> yr</span><br><span class="line"><span class="hljs-keyword">HAVING</span> <span class="hljs-keyword">COUNT</span>(title)&gt;<span class="hljs-number">2</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>12). List the film title and the leading actor for all of the films &#x2018;Julie Andrews&#x2019; played in.</p>
+<p><em>Did you get &#x201C;Little Miss Marker twice&#x201D;?</em></p>
+<p>Julie Andrews starred in the 1980 remake of Little Miss Marker and not the original(1934).</p>
+<p>Title is not a unique field, create a table of IDs in your subquery</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> title, <span class="hljs-keyword">name</span> <span class="hljs-keyword">FROM</span> movie</span><br><span class="line"><span class="hljs-keyword">JOIN</span> casting <span class="hljs-keyword">ON</span> movieid=movie.id</span><br><span class="line"><span class="hljs-keyword">JOIN</span> actor <span class="hljs-keyword">ON</span> actor.id=actorid</span><br><span class="line"><span class="hljs-keyword">WHERE</span> movieid <span class="hljs-keyword">IN</span> (</span><br><span class="line"><span class="hljs-keyword">SELECT</span> movieid <span class="hljs-keyword">FROM</span> movie</span><br><span class="line"><span class="hljs-keyword">JOIN</span> casting <span class="hljs-keyword">ON</span> movieid=movie.id</span><br><span class="line"><span class="hljs-keyword">JOIN</span> actor <span class="hljs-keyword">ON</span> actor.id=actorid</span><br><span class="line"><span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span>= <span class="hljs-string">&apos;Julie Andrews&apos;</span>) <span class="hljs-keyword">AND</span> <span class="hljs-keyword">ord</span>=<span class="hljs-number">1</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>13). Obtain a list, in alphabetical order, of actors who&#x2019;ve had at least 30 starring roles.</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">FROM</span> actor</span><br><span class="line"><span class="hljs-keyword">JOIN</span> casting <span class="hljs-keyword">ON</span> actorid=actor.id</span><br><span class="line"><span class="hljs-keyword">JOIN</span> movie <span class="hljs-keyword">ON</span> movie.id=movieid</span><br><span class="line"><span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">ord</span>=<span class="hljs-number">1</span></span><br><span class="line"><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> <span class="hljs-keyword">name</span></span><br><span class="line"><span class="hljs-keyword">HAVING</span> <span class="hljs-keyword">COUNT</span>(<span class="hljs-keyword">ord</span>)&gt;=<span class="hljs-number">30</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>14). List the films released in the year 1978 ordered by the number of actors in the cast, then by title.</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> title, <span class="hljs-keyword">COUNT</span>(<span class="hljs-keyword">name</span>) <span class="hljs-keyword">FROM</span> actor</span><br><span class="line"><span class="hljs-keyword">JOIN</span> casting <span class="hljs-keyword">ON</span> actorid=actor.id</span><br><span class="line"><span class="hljs-keyword">JOIN</span> movie <span class="hljs-keyword">ON</span> movie.id=movieid</span><br><span class="line"><span class="hljs-keyword">WHERE</span> yr = <span class="hljs-number">1978</span></span><br><span class="line"><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> title</span><br><span class="line"><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-keyword">COUNT</span>(<span class="hljs-keyword">name</span>) <span class="hljs-keyword">DESC</span>, title</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>15). List all the people who have worked with &#x2018;Art Garfunkel&#x2019;.</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">FROM</span> actor</span><br><span class="line"><span class="hljs-keyword">JOIN</span> casting <span class="hljs-keyword">ON</span> actorid=actor.id</span><br><span class="line"><span class="hljs-keyword">JOIN</span> movie <span class="hljs-keyword">ON</span> movieid=movie.id</span><br><span class="line"><span class="hljs-keyword">WHERE</span> movieid <span class="hljs-keyword">IN</span></span><br><span class="line">(<span class="hljs-keyword">SELECT</span> movie.id <span class="hljs-keyword">FROM</span> movie</span><br><span class="line"><span class="hljs-keyword">JOIN</span> casting <span class="hljs-keyword">ON</span> movieid=movie.id</span><br><span class="line"><span class="hljs-keyword">JOIN</span> actor <span class="hljs-keyword">ON</span> actor.id=actorid</span><br><span class="line"><span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span>=<span class="hljs-string">&apos;Art Garfunkel&apos;</span>) <span class="hljs-keyword">AND</span> <span class="hljs-keyword">name</span>!=<span class="hljs-string">&apos;Art Garfunkel&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
 </body></html>
     
     </div>
@@ -278,35 +396,136 @@
         <article class="article content gallery" itemscope itemprop="blogPost">
     <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
         
-            <a href="/2018/05/14/2018-05-15-Adaboost-decision-tree-algorithms/" itemprop="url">Adaboost decision tree algorithms</a>
+            <a href="/2018/08/22/2018-08-23-NSS-Tutorial/" itemprop="url">NSS Tutorial</a>
         
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
-            <time datetime="2018-05-15T00:00:00.000Z" itemprop="datePublished">5月 14 2018</time>
+            <time datetime="2018-08-23T00:00:00.000Z" itemprop="datePublished">8月 22 2018</time>
         </span>
         
         <span class="column is-narrow article-category">
             <i class="far fa-folder"></i>
-            <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+            <a class="article-category-link" href="/categories/SQL/">SQL</a>
         </span>
         
         
         <span class="column is-narrow">
             
             
-            1 分钟 读完 (约 192 字)
+            4 分钟 读完 (约 554 字)
         </span>
         
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <html><head></head><body><p><em>This is brief introduction of Adaboosting algorithms after I finished the machine learning course in coursera.</em></p>
-<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>A foundation question in machine learning is: <strong>can a set of weak classifiers be combined to create a strong classifier?</strong> The answer is yes. Adaboost was the first really successful boosting algorithm developed for binary classification.  More importantly, it is so mathematically beautiful and easy to implement that it would definitely be the starting point to learn boosting.  In this document,  we investigate this algorithm by boosting a set of decision tree algorithms. </p>
-<h2 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h2><p>Let&#x2019;s consider the implementation of Adaboosting ensemble on decision tree model. Given a set of classifiers $${f_1,f_2,\cdot, f_k}$$,  where $f_i=\pm 1$ for $i=1,\cdots, k$ we want to find an appropriate linear combination of these classifiers  </p>
-<p>$$F_k=\text{sign}\sum_{i=1}^kw_i f_i$$ </p>
-<p>such that $F_T$ is better that any $f_t$ . <em>How to find these weights</em>: $w_1,\cdots,w_k$ ? Or even more basically, how to choose these classifiers ${f_1,f_2,\cdot, f_k}$?  </p>
-<h5 id="Step-1"><a href="#Step-1" class="headerlink" title="Step 1."></a>Step 1.</h5><p>To begin with, we choose the first classifier $f_1$ to be the usual decision tree model.</p>
+        <html><head></head><body><h2 id="NSS-Tutorial"><a href="#NSS-Tutorial" class="headerlink" title="NSS Tutorial"></a>NSS Tutorial</h2><h3 id="https-sqlzoo-net-wiki-NSS-Tutorial"><a href="#https-sqlzoo-net-wiki-NSS-Tutorial" class="headerlink" title="https://sqlzoo.net/wiki/NSS_Tutorial"></a><a href="https://sqlzoo.net/wiki/NSS_Tutorial" target="_blank" rel="noopener">https://sqlzoo.net/wiki/NSS_Tutorial</a></h3><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ukprn</td>
+<td>varchar(8)</td>
+</tr>
+<tr>
+<td>institution</td>
+<td>varchar(100)</td>
+</tr>
+<tr>
+<td>subject</td>
+<td>varchar(60)</td>
+</tr>
+<tr>
+<td>level</td>
+<td>varchar(50)</td>
+</tr>
+<tr>
+<td>question</td>
+<td>varchar(10)</td>
+</tr>
+<tr>
+<td>A_STRONGLY_DISAGREE</td>
+<td>int(11)</td>
+</tr>
+<tr>
+<td>A_DISAGREE</td>
+<td>int(11)</td>
+</tr>
+<tr>
+<td>A_NEUTRAL</td>
+<td>int(11)</td>
+</tr>
+<tr>
+<td>A_AGREE</td>
+<td>int(11)</td>
+</tr>
+<tr>
+<td>A_STRONGLY_AGREE</td>
+<td>int(11)</td>
+</tr>
+<tr>
+<td>A_NA</td>
+<td>int(11)</td>
+</tr>
+<tr>
+<td>CI_MIN</td>
+<td>int(11)</td>
+</tr>
+<tr>
+<td>score</td>
+<td>int(11)</td>
+</tr>
+<tr>
+<td>CI_MAX</td>
+<td>int(11)</td>
+</tr>
+<tr>
+<td>response</td>
+<td>int(11)</td>
+</tr>
+<tr>
+<td>sample</td>
+<td>int(11)</td>
+</tr>
+<tr>
+<td>aggregate</td>
+<td>char(1)</td>
+</tr>
+</tbody></table>
+<p>National Student Survey 2012</p>
+<p>The National Student Survey <a href="http://www.thestudentsurvey.com/" target="_blank" rel="noopener">http://www.thestudentsurvey.com/</a> is presented to thousands of graduating students in UK Higher Education. The survey asks 22 questions, students can respond with STRONGLY DISAGREE, DISAGREE, NEUTRAL, AGREE or STRONGLY AGREE. The values in these columns represent PERCENTAGES of the total students who responded with that answer.</p>
+<p>The table <code>nss</code> has one row per institution, subject and question.</p>
+<p>1). The example shows the number who responded for:</p>
+<ul>
+<li>question 1</li>
+<li>at &#x2018;Edinburgh Napier University&#x2019;</li>
+<li>studying &#x2018;(8) Computer Science&#x2019;</li>
+</ul>
+<p>Show the the percentage who STRONGLY AGREE</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> A_STRONGLY_AGREE</span><br><span class="line">  <span class="hljs-keyword">FROM</span> nss</span><br><span class="line"> <span class="hljs-keyword">WHERE</span> question=<span class="hljs-string">&apos;Q01&apos;</span></span><br><span class="line">   <span class="hljs-keyword">AND</span> institution=<span class="hljs-string">&apos;Edinburgh Napier University&apos;</span></span><br><span class="line">   <span class="hljs-keyword">AND</span> subject=<span class="hljs-string">&apos;(8) Computer Science&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>2). Show the institution and subject where the <strong>score</strong> is at least 100 for question 15.</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> institution, subject</span><br><span class="line">  <span class="hljs-keyword">FROM</span> nss</span><br><span class="line"> <span class="hljs-keyword">WHERE</span> question=<span class="hljs-string">&apos;Q15&apos;</span></span><br><span class="line">   <span class="hljs-keyword">AND</span> score&gt;=<span class="hljs-number">100</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>3). Show the institution and score where the score for &#x2018;(8) Computer Science&#x2019; is less than 50 for question &#x2018;Q15&#x2019;</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> institution,score</span><br><span class="line">  <span class="hljs-keyword">FROM</span> nss</span><br><span class="line"> <span class="hljs-keyword">WHERE</span>  question=<span class="hljs-string">&apos;Q15&apos;</span><span class="hljs-keyword">and</span> subject=<span class="hljs-string">&apos;(8) Computer Science&apos;</span></span><br><span class="line"><span class="hljs-keyword">and</span> score&lt;<span class="hljs-number">50</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>4). Show the subject and total number of students who responded to question 22 for each of the subjects &#x2018;(8) Computer Science&#x2019; and &#x2018;(H) Creative Arts and Design&#x2019;.</p>
+<p><em>HINT</em></p>
+<p>You will need to use SUM over the <strong>response</strong> column and GROUP BY <strong>subject</strong></p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> subject, <span class="hljs-keyword">sum</span>(response)</span><br><span class="line">  <span class="hljs-keyword">FROM</span> nss</span><br><span class="line"> <span class="hljs-keyword">WHERE</span> question=<span class="hljs-string">&apos;Q22&apos;</span></span><br><span class="line">   <span class="hljs-keyword">AND</span> subject <span class="hljs-keyword">in</span> (<span class="hljs-string">&apos;(8) Computer Science&apos;</span>, <span class="hljs-string">&apos;(H) Creative Arts and Design&apos;</span>)</span><br><span class="line"><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> subject</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>5). Show the subject and total number of students who A_STRONGLY_AGREE to question 22 for each of the subjects &#x2018;(8) Computer Science&#x2019; and &#x2018;(H) Creative Arts and Design&#x2019;.</p>
+<p><em>HINT</em></p>
+<p>The A_STRONGLY_AGREE column is a percentage. To work out the total number of students who strongly agree you must multiply this percentage by the number who responded (<strong>response</strong>) and divide by 100 - take the SUM of that.</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> subject, <span class="hljs-keyword">sum</span>(response* A_STRONGLY_AGREE/<span class="hljs-number">100</span>)</span><br><span class="line">  <span class="hljs-keyword">FROM</span> nss</span><br><span class="line"> <span class="hljs-keyword">WHERE</span> question=<span class="hljs-string">&apos;Q22&apos;</span></span><br><span class="line">   <span class="hljs-keyword">AND</span> subject <span class="hljs-keyword">in</span> (<span class="hljs-string">&apos;(8) Computer Science&apos;</span>,<span class="hljs-string">&apos;(H) Creative Arts and Design&apos;</span>)</span><br><span class="line"><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> subject</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>6). Show the percentage of students who A_STRONGLY_AGREE to question 22 for the subject &#x2018;(8) Computer Science&#x2019; show the same figure for the subject &#x2018;(H) Creative Arts and Design&#x2019;.</p>
+<p>Use the <strong>ROUND</strong> function to show the percentage without decimal places.</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> subject, <span class="hljs-keyword">round</span>(<span class="hljs-keyword">sum</span>(response*A_STRONGLY_AGREE)/<span class="hljs-keyword">sum</span>(response))</span><br><span class="line">  <span class="hljs-keyword">FROM</span> nss</span><br><span class="line"> <span class="hljs-keyword">WHERE</span> question=<span class="hljs-string">&apos;Q22&apos;</span></span><br><span class="line">   <span class="hljs-keyword">AND</span> subject <span class="hljs-keyword">in</span> (<span class="hljs-string">&apos;(8) Computer Science&apos;</span>, <span class="hljs-string">&apos;(H) Creative Arts and Design&apos;</span>)</span><br><span class="line"><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> subject</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>7). Show the average scores for question &#x2018;Q22&#x2019; for each institution that include &#x2018;Manchester&#x2019; in the name.</p>
+<p>The column <strong>score</strong> is a percentage - you must use the method outlined above to multiply the percentage by the <strong>response</strong> and divide by the total response. Give your answer rounded to the nearest whole number.</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> institution, <span class="hljs-keyword">ROUND</span>(<span class="hljs-keyword">SUM</span>(score*response)/<span class="hljs-keyword">SUM</span>(response))</span><br><span class="line">  <span class="hljs-keyword">FROM</span> nss</span><br><span class="line"> <span class="hljs-keyword">WHERE</span> question=<span class="hljs-string">&apos;Q22&apos;</span></span><br><span class="line">   <span class="hljs-keyword">AND</span> (institution <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&apos;%Manchester%&apos;</span>)</span><br><span class="line"><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> institution</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>8). Show the institution, the total sample size and the number of computing students for institutions in Manchester for &#x2018;Q01&#x2019;.</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> institution, <span class="hljs-keyword">SUM</span>(<span class="hljs-keyword">sample</span>), <span class="hljs-keyword">SUM</span>(<span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> subject=<span class="hljs-string">&apos;(8) Computer Science&apos;</span> <span class="hljs-keyword">THEN</span> <span class="hljs-keyword">sample</span></span><br><span class="line">                         <span class="hljs-keyword">ELSE</span> <span class="hljs-number">0</span></span><br><span class="line">                         <span class="hljs-keyword">END</span>)</span><br><span class="line"></span><br><span class="line">  <span class="hljs-keyword">FROM</span> nss</span><br><span class="line"> <span class="hljs-keyword">WHERE</span> question=<span class="hljs-string">&apos;Q01&apos;</span></span><br><span class="line">   <span class="hljs-keyword">AND</span> (institution <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&apos;%Manchester%&apos;</span>)</span><br><span class="line"><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> institution</span><br></pre></td></tr></tbody></table></figure><p></p>
 </body></html>
     
     </div>
@@ -318,6 +537,819 @@
 
 
     
+        <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            <a href="/2018/08/17/2018-08-18-JOIN/" itemprop="url">JOIN</a>
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2018-08-18T00:00:00.000Z" itemprop="datePublished">8月 17 2018</time>
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/SQL/">SQL</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            6 分钟 读完 (约 947 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <html><head></head><body><h2 id="JOIN"><a href="#JOIN" class="headerlink" title="JOIN"></a>JOIN</h2><h3 id="https-sqlzoo-net-wiki-The-JOIN-operation"><a href="#https-sqlzoo-net-wiki-The-JOIN-operation" class="headerlink" title="https://sqlzoo.net/wiki/The_JOIN_operation"></a><a href="https://sqlzoo.net/wiki/The_JOIN_operation" target="_blank" rel="noopener">https://sqlzoo.net/wiki/The_JOIN_operation</a></h3><h4 id="JOIN-and-UEFA-EURO-2012"><a href="#JOIN-and-UEFA-EURO-2012" class="headerlink" title="JOIN and UEFA EURO 2012"></a>JOIN and UEFA EURO 2012</h4><p>This tutorial introduces <code>JOIN</code> which allows you to use data from two or more tables. The tables contain all matches and goals from UEFA EURO 2012 Football Championship in Poland and Ukraine.</p>
+<p>The data is available (mysql format) at <a href="http://sqlzoo.net/euro2012.sql" target="_blank" rel="noopener">http://sqlzoo.net/euro2012.sql</a></p>
+<p>Summary</p>
+<p><img src="https://sqlzoo.net/w/images/c/ce/FootballERD.png" alt="File:FootballERD.png"> </p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>mdate</th>
+<th>stadium</th>
+<th>team1</th>
+<th>team2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1001</td>
+<td>8 June 2012</td>
+<td>National Stadium, Warsaw</td>
+<td>POL</td>
+<td>GRE</td>
+</tr>
+<tr>
+<td>1002</td>
+<td>8 June 2012</td>
+<td>Stadion Miejski (Wroclaw)</td>
+<td>RUS</td>
+<td>CZE</td>
+</tr>
+<tr>
+<td>1003</td>
+<td>12 June 2012</td>
+<td>Stadion Miejski (Wroclaw)</td>
+<td>GRE</td>
+<td>CZE</td>
+</tr>
+<tr>
+<td>1004</td>
+<td>12 June 2012</td>
+<td>National Stadium, Warsaw</td>
+<td>POL</td>
+<td>RUS</td>
+</tr>
+<tr>
+<td>&#x2026;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>matchid</th>
+<th>teamid</th>
+<th>player</th>
+<th>gtime</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1001</td>
+<td>POL</td>
+<td>Robert Lewandowski</td>
+<td>17</td>
+</tr>
+<tr>
+<td>1001</td>
+<td>GRE</td>
+<td>Dimitris Salpingidis</td>
+<td>51</td>
+</tr>
+<tr>
+<td>1002</td>
+<td>RUS</td>
+<td>Alan Dzagoev</td>
+<td>15</td>
+</tr>
+<tr>
+<td>1002</td>
+<td>RUS</td>
+<td>Roman Pavlyuchenko</td>
+<td>82</td>
+</tr>
+<tr>
+<td>&#x2026;</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>teamname</th>
+<th>coach</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>POL</td>
+<td>Poland</td>
+<td>Franciszek Smuda</td>
+</tr>
+<tr>
+<td>RUS</td>
+<td>Russia</td>
+<td>Dick Advocaat</td>
+</tr>
+<tr>
+<td>CZE</td>
+<td>Czech Republic</td>
+<td>Michal Bilek</td>
+</tr>
+<tr>
+<td>GRE</td>
+<td>Greece</td>
+<td>Fernando Santos</td>
+</tr>
+<tr>
+<td>&#x2026;</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>1). The first example shows the goal scored by a player with the last name &#x2018;Bender&#x2019;. The <code>*</code> says to list all the columns in the table - a shorter way of saying <code>matchid, teamid, player, gtime</code></p>
+<p>Modify it to show the <em>matchid</em> and <em>player</em> name for all goals scored by Germany. To identify German players, check for: <code>teamid = &apos;GER&apos;</code></p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> matchid, player <span class="hljs-keyword">FROM</span> goal </span><br><span class="line">  <span class="hljs-keyword">WHERE</span> teamid = <span class="hljs-string">&apos;GER&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>2). From the previous query you can see that Lars Bender&#x2019;s scored a goal in game 1012. Now we want to know what teams were playing in that match.</p>
+<p>Notice in the that the column <code>matchid</code> in the <code>goal</code> table corresponds to the <code>id</code> column in the <code>game</code> table. We can look up information about game 1012 by finding that row in the <strong>game</strong> table.</p>
+<p>Show id, stadium, team1, team2 for just game 1012</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">id</span>, stadium, team1, team2</span><br><span class="line">  <span class="hljs-keyword">FROM</span> game <span class="hljs-keyword">where</span> <span class="hljs-keyword">id</span>=<span class="hljs-number">1012</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>3). You can combine the two steps into a single query with a <code>JOIN</code>.</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> *</span><br><span class="line">  <span class="hljs-keyword">FROM</span> game <span class="hljs-keyword">JOIN</span> goal <span class="hljs-keyword">ON</span> (<span class="hljs-keyword">id</span>=matchid)</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>The <strong>FROM</strong> clause says to merge data from the goal table with that from the game table. The <strong>ON</strong> says how to figure out which rows in <strong>game</strong> go with which rows in <strong>goal</strong> - the <strong>id</strong> from <strong>goal</strong> must match <strong>matchid</strong> from <strong>game</strong>. (If we wanted to be more clear/specific we could say<br><code>ON (game.id=goal.matchid)</code></p>
+<p>The code below shows the player (from the goal) and stadium name (from the game table) for every goal scored.</p>
+<p>Modify it to show the player, teamid, stadium and mdate for every German goal.</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> player, teamid, stadium, mdate</span><br><span class="line">  <span class="hljs-keyword">FROM</span> game <span class="hljs-keyword">JOIN</span> goal <span class="hljs-keyword">ON</span> (<span class="hljs-keyword">id</span>=matchid) <span class="hljs-keyword">where</span> teamid=<span class="hljs-string">&apos;GER&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>4). Use the same <code>JOIN</code> as in the previous question.</p>
+<p>Show the team1, team2 and player for every goal scored by a player called Mario <code>player LIKE &apos;Mario%&apos;</code></p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> team1, team2, player <span class="hljs-keyword">FROM</span> game</span><br><span class="line"><span class="hljs-keyword">JOIN</span> goal <span class="hljs-keyword">ON</span> <span class="hljs-keyword">id</span>=matchid</span><br><span class="line"><span class="hljs-keyword">WHERE</span> player <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&apos;Mario%&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>5). The table <code>eteam</code> gives details of every national team including the coach. You can <code>JOIN</code> <code>goal</code> to <code>eteam</code>using the phrase <code>goal JOIN eteam on teamid=id</code></p>
+<p>Show <code>player</code>, <code>teamid</code>, <code>coach</code>, <code>gtime</code> for all goals scored in the first 10 minutes <code>gtime&lt;=10</code></p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> player, teamid, coach, gtime</span><br><span class="line">  <span class="hljs-keyword">FROM</span> goal <span class="hljs-keyword">join</span> eteam <span class="hljs-keyword">on</span> teamid=<span class="hljs-keyword">id</span></span><br><span class="line"> <span class="hljs-keyword">WHERE</span> gtime&lt;=<span class="hljs-number">10</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>6). To <code>JOIN</code> <code>game</code> with <code>eteam</code> you could use either<br><code>game JOIN eteam ON (team1=eteam.id)</code> or <code>game JOIN eteam ON (team2=eteam.id)</code></p>
+<p>Notice that because <code>id</code> is a column name in both <code>game</code> and <code>eteam</code> you must specify <code>eteam.id</code> instead of just <code>id</code></p>
+<p>List the the dates of the matches and the name of the team in which &#x2018;Fernando Santos&#x2019; was the team1 coach.</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> mdate, teamname <span class="hljs-keyword">FROM</span> game</span><br><span class="line"><span class="hljs-keyword">JOIN</span> eteam <span class="hljs-keyword">ON</span> team1 = eteam.id</span><br><span class="line"><span class="hljs-keyword">WHERE</span> coach = <span class="hljs-string">&apos;Fernando Santos&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>7). List the player for every goal scored in a game where the stadium was &#x2018;National Stadium, Warsaw&#x2019; </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> player <span class="hljs-keyword">FROM</span> goal</span><br><span class="line"><span class="hljs-keyword">JOIN</span> game <span class="hljs-keyword">ON</span> matchid = <span class="hljs-keyword">id</span></span><br><span class="line"><span class="hljs-keyword">WHERE</span> stadium = <span class="hljs-string">&apos;National Stadium, Warsaw&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<h3 id="More-difficult-questions"><a href="#More-difficult-questions" class="headerlink" title="More difficult questions"></a>More difficult questions</h3><p>8).  The example query shows all goals scored in the Germany-Greece quarterfinal.</p>
+<p>Instead show the <strong>name</strong> of all players who scored a goal against Germany.</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> player</span><br><span class="line">  <span class="hljs-keyword">FROM</span> game <span class="hljs-keyword">JOIN</span> goal <span class="hljs-keyword">ON</span> matchid = <span class="hljs-keyword">id</span> </span><br><span class="line">    <span class="hljs-keyword">WHERE</span> (team1=<span class="hljs-string">&apos;GER&apos;</span> <span class="hljs-keyword">or</span> team2=<span class="hljs-string">&apos;GER&apos;</span>) <span class="hljs-keyword">and</span> teamid != <span class="hljs-string">&apos;GER&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>9). Show <strong>teamname</strong> and the total number of goals scored.</p>
+<p><u>COUNT and GROUP BY</u></p>
+<p>You should COUNT(*) in the SELECT line and GROUP BY teamname</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> teamname, <span class="hljs-keyword">COUNT</span>(teamid)</span><br><span class="line">  <span class="hljs-keyword">FROM</span> eteam <span class="hljs-keyword">JOIN</span> goal <span class="hljs-keyword">ON</span> <span class="hljs-keyword">id</span>=teamid</span><br><span class="line"><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> teamname</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>10). Show the stadium and the number of goals scored in each stadium. </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> stadium, <span class="hljs-keyword">COUNT</span>(teamid)</span><br><span class="line">  <span class="hljs-keyword">FROM</span> game <span class="hljs-keyword">JOIN</span> goal <span class="hljs-keyword">ON</span> <span class="hljs-keyword">id</span> = matchid</span><br><span class="line"><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> stadium</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>11). For every match involving &#x2018;POL&#x2019;, show the matchid, date and the number of goals scored. </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> matchid, mdate, <span class="hljs-keyword">COUNT</span>(teamid)</span><br><span class="line">  <span class="hljs-keyword">FROM</span> game <span class="hljs-keyword">JOIN</span> goal <span class="hljs-keyword">ON</span> matchid = <span class="hljs-keyword">id</span> </span><br><span class="line"> <span class="hljs-keyword">WHERE</span> (team1 = <span class="hljs-string">&apos;POL&apos;</span> <span class="hljs-keyword">OR</span> team2 = <span class="hljs-string">&apos;POL&apos;</span>)</span><br><span class="line"><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> matchid, mdate</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>12). For every match where &#x2018;GER&#x2019; scored, show matchid, match date and the number of goals scored by &#x2018;GER&#x2019; </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> matchid, mdate, <span class="hljs-keyword">COUNT</span>(teamid) <span class="hljs-keyword">FROM</span> game</span><br><span class="line"><span class="hljs-keyword">JOIN</span> goal <span class="hljs-keyword">ON</span> <span class="hljs-keyword">id</span> = matchid</span><br><span class="line"><span class="hljs-keyword">WHERE</span> teamid = <span class="hljs-string">&apos;GER&apos;</span></span><br><span class="line"><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> matchid, mdate</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>13). List every match with the goals scored by each team as shown. This will use &#x201C;<a href="https://sqlzoo.net/wiki/CASE" target="_blank" rel="noopener">CASE WHEN</a>&#x201C; which has not been explained in any previous exercises.</p>
+<table>
+<thead>
+<tr>
+<th>mdate</th>
+<th>team1</th>
+<th>score1</th>
+<th>team2</th>
+<th>score2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1 July 2012</td>
+<td>ESP</td>
+<td>4</td>
+<td>ITA</td>
+<td>0</td>
+</tr>
+<tr>
+<td>10 June 2012</td>
+<td>ESP</td>
+<td>1</td>
+<td>ITA</td>
+<td>1</td>
+</tr>
+<tr>
+<td>10 June 2012</td>
+<td>IRL</td>
+<td>1</td>
+<td>CRO</td>
+<td>3</td>
+</tr>
+<tr>
+<td>&#x2026;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>Notice in the query given every goal is listed. If it was a team1 goal then a 1 appears in score1, otherwise there is a 0. You could SUM this column to get a count of the goals scored by team1. <strong>Sort your result by mdate, matchid, team1 and team2.</strong></p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> mdate, team1,</span><br><span class="line">  <span class="hljs-keyword">SUM</span>(<span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> teamid=team1 <span class="hljs-keyword">THEN</span> <span class="hljs-number">1</span> <span class="hljs-keyword">ELSE</span> <span class="hljs-number">0</span> <span class="hljs-keyword">END</span>) <span class="hljs-keyword">AS</span> score1, </span><br><span class="line">  team2,</span><br><span class="line">  <span class="hljs-keyword">SUM</span>(<span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> teamid=team2 <span class="hljs-keyword">THEN</span> <span class="hljs-number">1</span> <span class="hljs-keyword">ELSE</span> <span class="hljs-number">0</span> <span class="hljs-keyword">END</span>) <span class="hljs-keyword">AS</span> score2</span><br><span class="line">  <span class="hljs-keyword">FROM</span> game <span class="hljs-keyword">left</span> <span class="hljs-keyword">JOIN</span> goal <span class="hljs-keyword">ON</span> matchid = <span class="hljs-keyword">id</span></span><br><span class="line"><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> mdate, team1, team2</span><br><span class="line"><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> mdate, matchid, team1, team2</span><br></pre></td></tr></tbody></table></figure><p></p>
+</body></html>
+    
+    </div>
+    
+    
+</article>
+
+
+
+
+    
+        <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            <a href="/2018/08/17/2018-08-18-SUM-and-COUNT/" itemprop="url">SUM and COUNT</a>
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2018-08-18T00:00:00.000Z" itemprop="datePublished">8月 17 2018</time>
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/SQL/">SQL</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            2 分钟 读完 (约 232 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <html><head></head><body><h2 id="SUM-and-COUNT"><a href="#SUM-and-COUNT" class="headerlink" title="SUM and COUNT"></a>SUM and COUNT</h2><h3 id="https-sqlzoo-net-wiki-SUM-and-COUNT"><a href="#https-sqlzoo-net-wiki-SUM-and-COUNT" class="headerlink" title="https://sqlzoo.net/wiki/SUM_and_COUNT"></a><a href="https://sqlzoo.net/wiki/SUM_and_COUNT" target="_blank" rel="noopener">https://sqlzoo.net/wiki/SUM_and_COUNT</a></h3><h3 id="World-Country-Profile-Aggregate-functions"><a href="#World-Country-Profile-Aggregate-functions" class="headerlink" title="World Country Profile: Aggregate functions"></a>World Country Profile: Aggregate functions</h3><p>This tutorial is about aggregate functions such as COUNT, SUM and AVG. An aggregate function takes many values and delivers just one value. For example the function SUM would aggregate the values 2, 4 and 5 to deliver the single value 11.</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>continent</th>
+<th>area</th>
+<th>population</th>
+<th>gdp</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Afghanistan</td>
+<td>Asia</td>
+<td>652230</td>
+<td>25500100</td>
+<td>20343000000</td>
+</tr>
+<tr>
+<td>Albania</td>
+<td>Europe</td>
+<td>28748</td>
+<td>2831741</td>
+<td>12960000000</td>
+</tr>
+<tr>
+<td>Algeria</td>
+<td>Africa</td>
+<td>2381741</td>
+<td>37100000</td>
+<td>188681000000</td>
+</tr>
+<tr>
+<td>Andorra</td>
+<td>Europe</td>
+<td>468</td>
+<td>78115</td>
+<td>3712000000</td>
+</tr>
+<tr>
+<td>Angola</td>
+<td>Africa</td>
+<td>1246700</td>
+<td>20609294</td>
+<td>100990000000</td>
+</tr>
+<tr>
+<td>&#x2026;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>1). Show the total <strong>population</strong> of the world.</p>
+<p></p><figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">world(name, continent, area, population, gdp)</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">SUM</span>(population)</span><br><span class="line"><span class="hljs-keyword">FROM</span> world</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>2). List all the continents - just once each. </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> continent <span class="hljs-keyword">FROM</span> world</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>3). Give the total GDP of Africa </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">SUM</span>(gdp) <span class="hljs-keyword">FROM</span> world <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> continent</span><br><span class="line"><span class="hljs-keyword">HAVING</span> continent = <span class="hljs-string">&apos;Africa&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>4). How many countries have an <strong>area</strong> of at least 1000000 </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">COUNT</span>(<span class="hljs-keyword">name</span>) <span class="hljs-keyword">FROM</span> world <span class="hljs-keyword">WHERE</span> area &gt;= <span class="hljs-number">1000000</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>5). What is the total <strong>population</strong> of (&#x2018;Estonia&#x2019;, &#x2018;Latvia&#x2019;, &#x2018;Lithuania&#x2019;) </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">SUM</span>(population) <span class="hljs-keyword">FROM</span> world</span><br><span class="line"><span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">IN</span> (<span class="hljs-string">&apos;Estonia&apos;</span>, <span class="hljs-string">&apos;Latvia&apos;</span>, <span class="hljs-string">&apos;Lithuania&apos;</span>)</span><br></pre></td></tr></tbody></table></figure><p></p>
+<h3 id="Using-GROUP-BY-and-HAVING"><a href="#Using-GROUP-BY-and-HAVING" class="headerlink" title="Using GROUP BY and HAVING"></a>Using GROUP BY and HAVING</h3><p>6). For each <strong>continent</strong> show the <strong>continent</strong> and number of countries. </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> continent, <span class="hljs-keyword">COUNT</span>(<span class="hljs-keyword">name</span>) <span class="hljs-keyword">FROM</span> world</span><br><span class="line"><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> continent</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>7). For each <strong>continent</strong> show the <strong>continent</strong> and number of countries with populations of at least 10 million. </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> continent, <span class="hljs-keyword">COUNT</span>(<span class="hljs-keyword">name</span>) <span class="hljs-keyword">FROM</span> world</span><br><span class="line"><span class="hljs-keyword">WHERE</span> population &gt;= <span class="hljs-number">10000000</span></span><br><span class="line"><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> continent</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>8). List the continents that <strong>have</strong> a total population of at least 100 million. </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> continent <span class="hljs-keyword">FROM</span> world</span><br><span class="line"><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> continent</span><br><span class="line"><span class="hljs-keyword">HAVING</span> <span class="hljs-keyword">SUM</span>(population) &gt;= <span class="hljs-number">100000000</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+</body></html>
+    
+    </div>
+    
+    
+</article>
+
+
+
+
+    
+        <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            <a href="/2018/08/16/2018-08-17-SELECT-from-Nobel/" itemprop="url">SELECT from Nobel</a>
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2018-08-17T00:00:00.000Z" itemprop="datePublished">8月 16 2018</time>
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/SQL/">SQL</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            3 分钟 读完 (约 460 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <html><head></head><body><h2 id="SELECT-from-Nobel"><a href="#SELECT-from-Nobel" class="headerlink" title="SELECT from Nobel"></a>SELECT from Nobel</h2><h3 id="https-sqlzoo-net-wiki-SELECT-from-Nobel-Tutorial"><a href="#https-sqlzoo-net-wiki-SELECT-from-Nobel-Tutorial" class="headerlink" title="https://sqlzoo.net/wiki/SELECT_from_Nobel_Tutorial"></a><a href="https://sqlzoo.net/wiki/SELECT_from_Nobel_Tutorial" target="_blank" rel="noopener">https://sqlzoo.net/wiki/SELECT_from_Nobel_Tutorial</a></h3><h4 id="nobel-Nobel-Laureates"><a href="#nobel-Nobel-Laureates" class="headerlink" title="nobel Nobel Laureates"></a><code>nobel</code> Nobel Laureates</h4><p>We continue practicing simple SQL queries on a single table.</p>
+<p>This tutorial is concerned with a table of Nobel prize winners:</p>
+<p></p><figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nobel(yr, subject, winner)</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>Using the <code>SELECT</code> statement.</p>
+<p>1). Change the query shown so that it displays Nobel prizes for 1950. </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> yr, subject, winner</span><br><span class="line">  <span class="hljs-keyword">FROM</span> nobel</span><br><span class="line"> <span class="hljs-keyword">WHERE</span> yr = <span class="hljs-number">1950</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>2). Show who won the 1962 prize for Literature. </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> winner</span><br><span class="line">  <span class="hljs-keyword">FROM</span> nobel</span><br><span class="line"> <span class="hljs-keyword">WHERE</span> yr = <span class="hljs-number">1962</span></span><br><span class="line">   <span class="hljs-keyword">AND</span> subject = <span class="hljs-string">&apos;Literature&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>3). Show the year and subject that won &#x2018;Albert Einstein&#x2019; his prize. </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> yr, subject <span class="hljs-keyword">FROM</span> nobel</span><br><span class="line"><span class="hljs-keyword">WHERE</span> winner = <span class="hljs-string">&apos;Albert Einstein&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>4). Give the name of the &#x2018;Peace&#x2019; winners since the year 2000, including 2000. </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> winner <span class="hljs-keyword">FROM</span> nobel</span><br><span class="line"><span class="hljs-keyword">WHERE</span> subject = <span class="hljs-string">&apos;Peace&apos;</span> <span class="hljs-keyword">AND</span> yr &gt;= <span class="hljs-number">2000</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>5). Show all details (<strong>yr</strong>, <strong>subject</strong>, <strong>winner</strong>) of the Literature prize winners for 1980 to 1989 inclusive. </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> nobel</span><br><span class="line"><span class="hljs-keyword">WHERE</span> yr <span class="hljs-keyword">BETWEEN</span> <span class="hljs-number">1980</span> <span class="hljs-keyword">AND</span> <span class="hljs-number">1989</span> </span><br><span class="line"><span class="hljs-keyword">AND</span> subject = <span class="hljs-string">&apos;Literature&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>6). Show all details of the presidential winners:</p>
+<ul>
+<li><p>Theodore Roosevelt</p>
+</li>
+<li><p>Woodrow Wilson</p>
+</li>
+<li><p>Jimmy Carter</p>
+</li>
+<li><p>Barack Obama</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> nobel</span><br><span class="line"> <span class="hljs-keyword">WHERE</span> winner <span class="hljs-keyword">IN</span> (<span class="hljs-string">&apos;Theodore Roosevelt&apos;</span>,</span><br><span class="line">                  <span class="hljs-string">&apos;Woodrow Wilson&apos;</span>,</span><br><span class="line">                  <span class="hljs-string">&apos;Jimmy Carter&apos;</span>,</span><br><span class="line">                  <span class="hljs-string">&apos;Barack Obama&apos;</span>)</span><br></pre></td></tr></tbody></table></figure><p></p>
+</li>
+</ul>
+<p>7). Show the winners with first name John </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> winner <span class="hljs-keyword">FROM</span> nobel</span><br><span class="line"><span class="hljs-keyword">WHERE</span> winner <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&apos;John%&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>8). Show the year, subject, and name of Physics winners for 1980 together with the Chemistry winners for 1984. </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> nobel</span><br><span class="line"><span class="hljs-keyword">WHERE</span> (subject = <span class="hljs-string">&apos;Physics&apos;</span> <span class="hljs-keyword">AND</span> yr = <span class="hljs-number">1980</span>)</span><br><span class="line"><span class="hljs-keyword">or</span></span><br><span class="line">(subject = <span class="hljs-string">&apos;Chemistry&apos;</span> <span class="hljs-keyword">AND</span> yr = <span class="hljs-number">1984</span>)</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>9). Show the year, subject, and name of winners for 1980 excluding Chemistry and Medicine </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> nobel</span><br><span class="line"><span class="hljs-keyword">WHERE</span> yr = <span class="hljs-number">1980</span> <span class="hljs-keyword">AND</span> subject <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">IN</span> (<span class="hljs-string">&apos;Chemistry&apos;</span>, <span class="hljs-string">&apos;Medicine&apos;</span>)</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>10). Show year, subject, and name of people who won a &#x2018;Medicine&#x2019; prize in an early year (before 1910, not including 1910) together with winners of a &#x2018;Literature&#x2019; prize in a later year (after 2004, including 2004) </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span>  yr, subject, winner <span class="hljs-keyword">FROM</span> nobel</span><br><span class="line"><span class="hljs-keyword">WHERE</span> (subject = <span class="hljs-string">&apos;Medicine&apos;</span> <span class="hljs-keyword">AND</span> yr &lt; <span class="hljs-number">1910</span>) <span class="hljs-keyword">OR</span></span><br><span class="line">      (subject = <span class="hljs-string">&apos;Literature&apos;</span> <span class="hljs-keyword">AND</span> yr &gt;= <span class="hljs-number">2004</span>)</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>11). Find all details of the prize won by PETER GR&#xDC;NBERG</p>
+<p>Non-ASCII characters</p>
+<p>The u in his name has an <strong>umlaut</strong>. You may find this link useful <a href="https://en.wikipedia.org/wiki/%C3%9C#Keyboarding" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/%C3%9C#Keyboarding</a></p>
+<p>12).  Find all details of the prize won by EUGENE O&#x2019;NEILL</p>
+<p>Escaping single quotes</p>
+<p>You can&#x2019;t put a single quote in a quote string directly. You can use two single quotes within a quoted string.</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> nobel</span><br><span class="line"><span class="hljs-keyword">WHERE</span> winner = <span class="hljs-string">&apos;EUGENE O&apos;&apos;NEILL&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>13). Knights in order</p>
+<p>List the winners, year and subject where the winner starts with <strong>Sir</strong>. Show the the most recent first, then by name order.</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> winner, yr, subject <span class="hljs-keyword">FROM</span> nobel</span><br><span class="line"><span class="hljs-keyword">WHERE</span> winner <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&apos;Sir%&apos;</span></span><br><span class="line"><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> yr <span class="hljs-keyword">DESC</span>, winner</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>14). The expression <strong>subject IN (&#x2018;Chemistry&#x2019;,&#x2019;Physics&#x2019;)</strong> can be used as a value - it will be <strong>0</strong> or <strong>1</strong>.</p>
+<p>Show the 1984 winners and subject ordered by subject and winner name; but list Chemistry and Physics last.</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> winner, subject</span><br><span class="line">  <span class="hljs-keyword">FROM</span> nobel</span><br><span class="line"> <span class="hljs-keyword">WHERE</span> yr=<span class="hljs-number">1984</span></span><br><span class="line"> <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> subject <span class="hljs-keyword">IN</span> (<span class="hljs-string">&apos;Physics&apos;</span>,<span class="hljs-string">&apos;Chemistry&apos;</span>), subject, winner</span><br></pre></td></tr></tbody></table></figure><p></p>
+</body></html>
+    
+    </div>
+    
+    
+</article>
+
+
+
+
+    
+        <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            <a href="/2018/08/16/2018-08-17-SELECT-within-SELECT/" itemprop="url">SELECT within SELECT</a>
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2018-08-17T00:00:00.000Z" itemprop="datePublished">8月 16 2018</time>
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/SQL/">SQL</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            4 分钟 读完 (约 614 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <html><head></head><body><h2 id="SELECT-within-SELECT"><a href="#SELECT-within-SELECT" class="headerlink" title="SELECT within SELECT"></a>SELECT within SELECT</h2><h3 id="https-sqlzoo-net-wiki-SELECT-within-SELECT-Tutorial"><a href="#https-sqlzoo-net-wiki-SELECT-within-SELECT-Tutorial" class="headerlink" title="https://sqlzoo.net/wiki/SELECT_within_SELECT_Tutorial"></a><a href="https://sqlzoo.net/wiki/SELECT_within_SELECT_Tutorial" target="_blank" rel="noopener">https://sqlzoo.net/wiki/SELECT_within_SELECT_Tutorial</a></h3><p>This tutorial looks at how we can use SELECT statements within SELECT statements to perform more complex queries.</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>continent</th>
+<th>area</th>
+<th>population</th>
+<th>gdp</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Afghanistan</td>
+<td>Asia</td>
+<td>652230</td>
+<td>25500100</td>
+<td>20343000000</td>
+</tr>
+<tr>
+<td>Albania</td>
+<td>Europe</td>
+<td>28748</td>
+<td>2831741</td>
+<td>12960000000</td>
+</tr>
+<tr>
+<td>Algeria</td>
+<td>Africa</td>
+<td>2381741</td>
+<td>37100000</td>
+<td>188681000000</td>
+</tr>
+<tr>
+<td>Andorra</td>
+<td>Europe</td>
+<td>468</td>
+<td>78115</td>
+<td>3712000000</td>
+</tr>
+<tr>
+<td>Angola</td>
+<td>Africa</td>
+<td>1246700</td>
+<td>20609294</td>
+<td>100990000000</td>
+</tr>
+<tr>
+<td>&#x2026;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>1). List each country <strong>name</strong> where the <strong>population</strong> is larger than that of &#x2018;Russia&#x2019;.</p>
+<p></p><figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">world(name, continent, area, population, gdp)</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">FROM</span> world</span><br><span class="line">  <span class="hljs-keyword">WHERE</span> population &gt;</span><br><span class="line">     (<span class="hljs-keyword">SELECT</span> population <span class="hljs-keyword">FROM</span> world</span><br><span class="line">      <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span>=<span class="hljs-string">&apos;Russia&apos;</span>)</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>2). Show the countries in Europe with a per capita GDP greater than &#x2018;United Kingdom&#x2019;. </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">FROM</span> world</span><br><span class="line"><span class="hljs-keyword">WHERE</span> gdp/population&gt;</span><br><span class="line">(<span class="hljs-keyword">SELECT</span> gdp/population <span class="hljs-keyword">FROM</span> world <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> = <span class="hljs-string">&apos;United Kingdom&apos;</span>) <span class="hljs-keyword">AND</span> continent = <span class="hljs-string">&apos;Europe&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>3). List the <strong>name</strong> and <strong>continent</strong> of countries in the continents containing either <strong>Argentina</strong> or <strong>Australia</strong>. Order by name of the country. </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span>, continent <span class="hljs-keyword">FROM</span> world</span><br><span class="line"><span class="hljs-keyword">WHERE</span> continent <span class="hljs-keyword">IN</span> </span><br><span class="line">(<span class="hljs-keyword">SELECT</span> continent <span class="hljs-keyword">FROM</span> world <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">IN</span> (<span class="hljs-string">&apos;Argentina&apos;</span>,<span class="hljs-string">&apos;Australia&apos;</span>))</span><br><span class="line"><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-keyword">name</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>4). Which country has a population that is more than Canada but less than Poland? Show the name and the population. </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span>, population <span class="hljs-keyword">FROM</span> world</span><br><span class="line"><span class="hljs-keyword">WHERE</span> population &gt;</span><br><span class="line">(<span class="hljs-keyword">SELECT</span> population <span class="hljs-keyword">FROM</span> world <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> = <span class="hljs-string">&apos;Canada&apos;</span>)</span><br><span class="line"><span class="hljs-keyword">AND</span> population &lt;</span><br><span class="line">(<span class="hljs-keyword">SELECT</span> population <span class="hljs-keyword">FROM</span> world <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> = <span class="hljs-string">&apos;Poland&apos;</span>)</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>5). Germany (population 80 million) has the largest population of the countries in Europe. Austria (population 8.5 million) has 11% of the population of Germany.</p>
+<p>Show the name and the population of each country in Europe. Show the population as a percentage of the population of Germany.</p>
+<p><u>Decimal places</u></p>
+<p>You can use the function <a href="https://sqlzoo.net/wiki/ROUND" target="_blank" rel="noopener">ROUND</a> to remove the decimal places.</p>
+<p><u>Percent symbol %</u></p>
+<p>You can use the function <a href="https://sqlzoo.net/wiki/CONCAT" target="_blank" rel="noopener">CONCAT</a> to add the percentage symbol.</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span>, <span class="hljs-keyword">CONCAT</span>(<span class="hljs-keyword">round</span>(<span class="hljs-number">100</span>*population/</span><br><span class="line">(<span class="hljs-keyword">SELECT</span> population <span class="hljs-keyword">FROM</span> world <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> = <span class="hljs-string">&apos;Germany&apos;</span>)),<span class="hljs-string">&apos;%&apos;</span>)</span><br><span class="line"><span class="hljs-keyword">FROM</span> world</span><br><span class="line"><span class="hljs-keyword">WHERE</span> continent = <span class="hljs-string">&apos;Europe&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>To gain an absurdly detailed view of one insignificant feature of the language, read on.</p>
+<p>We can use the word <code>ALL</code> to allow &gt;= or &gt; or &lt; or &lt;=to act over a list. For example, you can find the largest country in the world, by population with this query:</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span></span><br><span class="line">  <span class="hljs-keyword">FROM</span> world</span><br><span class="line"> <span class="hljs-keyword">WHERE</span> population &gt;= <span class="hljs-keyword">ALL</span>(<span class="hljs-keyword">SELECT</span> population</span><br><span class="line">                           <span class="hljs-keyword">FROM</span> world</span><br><span class="line">                          <span class="hljs-keyword">WHERE</span> population&gt;<span class="hljs-number">0</span>)</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>You need the condition <strong>population&gt;0</strong> in the sub-query as some countries have <strong>null</strong> for population.</p>
+<p>6). Which countries have a GDP greater than every country in Europe? [Give the <strong>name</strong> only.] (Some countries may have NULL gdp values) </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span></span><br><span class="line">  <span class="hljs-keyword">FROM</span> world</span><br><span class="line"> <span class="hljs-keyword">WHERE</span> gdp &gt; <span class="hljs-keyword">ALL</span>(<span class="hljs-keyword">SELECT</span> gdp</span><br><span class="line">                           <span class="hljs-keyword">FROM</span> world</span><br><span class="line">                          <span class="hljs-keyword">WHERE</span> gdp&gt;<span class="hljs-number">0</span> <span class="hljs-keyword">and</span> continent=<span class="hljs-string">&apos;Europe&apos;</span>)</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>We can refer to values in the outer SELECT within the inner SELECT. We can name the tables so that we can tell the difference between the inner and outer versions. </p>
+<p>7). Find the largest country (by area) in each continent, show the <strong>continent</strong>, the <strong>name</strong> and the <strong>area</strong>: </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> continent, <span class="hljs-keyword">name</span>, area <span class="hljs-keyword">FROM</span> world x</span><br><span class="line">  <span class="hljs-keyword">WHERE</span> area &gt;= <span class="hljs-keyword">ALL</span></span><br><span class="line">    (<span class="hljs-keyword">SELECT</span> area <span class="hljs-keyword">FROM</span> world y</span><br><span class="line">        <span class="hljs-keyword">WHERE</span> y.continent = x.continent</span><br><span class="line">          <span class="hljs-keyword">AND</span> area&gt;<span class="hljs-number">0</span>)</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>8). List each continent and the name of the country that comes first alphabetically. </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> continent, <span class="hljs-keyword">name</span> <span class="hljs-keyword">FROM</span> world x</span><br><span class="line"><span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> = (</span><br><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">FROM</span> world y </span><br><span class="line"><span class="hljs-keyword">WHERE</span> x.continent = y.continent <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIMIT</span> <span class="hljs-number">1</span></span><br><span class="line">)</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>9). Find the continents where all countries have a population &lt;= 25000000. Then find the names of the countries associated with these continents. Show <strong>name</strong>, <strong>continent</strong> and <strong>population</strong>. </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span>, continent, population <span class="hljs-keyword">FROM</span> world x</span><br><span class="line"><span class="hljs-keyword">WHERE</span> x.continent <span class="hljs-keyword">in</span> (</span><br><span class="line"><span class="hljs-keyword">SELECT</span> continent <span class="hljs-keyword">FROM</span> world y <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> continent</span><br><span class="line"><span class="hljs-keyword">HAVING</span> <span class="hljs-keyword">MAX</span>(y.population) &lt;= <span class="hljs-number">25000000</span></span><br><span class="line">)</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>10). Some countries have populations more than three times that of any of their neighbours (in the same continent). Give the countries and continents. </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span>, continent <span class="hljs-keyword">FROM</span> world x</span><br><span class="line"><span class="hljs-keyword">WHERE</span> population &gt; <span class="hljs-keyword">ALL</span>(</span><br><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-number">3</span>*population <span class="hljs-keyword">FROM</span> world y</span><br><span class="line"><span class="hljs-keyword">WHERE</span> x.continent = y.continent <span class="hljs-keyword">AND</span> x.name != y.name</span><br><span class="line">)</span><br></pre></td></tr></tbody></table></figure><p></p>
+</body></html>
+    
+    </div>
+    
+    
+</article>
+
+
+
+
+    
+        <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            <a href="/2018/08/16/2018-08-17-SELECT-from-WORLD/" itemprop="url">SELECT from WORLD</a>
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2018-08-17T00:00:00.000Z" itemprop="datePublished">8月 16 2018</time>
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/SQL/">SQL</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            5 分钟 读完 (约 708 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <html><head></head><body><h2 id="SELECT-from-WORLD"><a href="#SELECT-from-WORLD" class="headerlink" title="SELECT from WORLD"></a>SELECT from WORLD</h2><h3 id="https-sqlzoo-net-wiki-SELECT-from-WORLD-Tutorial"><a href="#https-sqlzoo-net-wiki-SELECT-from-WORLD-Tutorial" class="headerlink" title="https://sqlzoo.net/wiki/SELECT_from_WORLD_Tutorial"></a><a href="https://sqlzoo.net/wiki/SELECT_from_WORLD_Tutorial" target="_blank" rel="noopener">https://sqlzoo.net/wiki/SELECT_from_WORLD_Tutorial</a></h3><p>In this tutorial you will use the SELECT command on the table <code>world</code>:</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>continent</th>
+<th>area</th>
+<th>population</th>
+<th>gdp</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Afghanistan</td>
+<td>Asia</td>
+<td>652230</td>
+<td>25500100</td>
+<td>20343000000</td>
+</tr>
+<tr>
+<td>Albania</td>
+<td>Europe</td>
+<td>28748</td>
+<td>2831741</td>
+<td>12960000000</td>
+</tr>
+<tr>
+<td>Algeria</td>
+<td>Africa</td>
+<td>2381741</td>
+<td>37100000</td>
+<td>188681000000</td>
+</tr>
+<tr>
+<td>Andorra</td>
+<td>Europe</td>
+<td>468</td>
+<td>78115</td>
+<td>3712000000</td>
+</tr>
+<tr>
+<td>Angola</td>
+<td>Africa</td>
+<td>1246700</td>
+<td>20609294</td>
+<td>100990000000</td>
+</tr>
+<tr>
+<td>&#x2026;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>1). Observe the result of running this SQL command to show the name, continent and population of all countries. </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span>, continent, population <span class="hljs-keyword">FROM</span> world</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>2). Show the name for the countries that have a population of at least 200 million. 200 million is 200000000, there are eight zeros. </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">FROM</span> world</span><br><span class="line"><span class="hljs-keyword">WHERE</span> population &gt;=<span class="hljs-number">200000000</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>3). Give the <code>name</code> and the <strong>per capita GDP</strong> for those countries with a <code>population</code> of at least 200 million. per capita GDP is the GDP divided by the population GDP/population</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span>, gdp/population <span class="hljs-keyword">FROM</span> world</span><br><span class="line"><span class="hljs-keyword">WHERE</span> population  &gt; <span class="hljs-number">200000000</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>4). Show the <code>name</code> and <code>population</code> in millions for the countries of the <code>continent</code> &#x2018;South America&#x2019;. Divide the population by 1000000 to get population in millions.  </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span>, population/<span class="hljs-number">1000000</span> <span class="hljs-keyword">FROM</span> world</span><br><span class="line"><span class="hljs-keyword">WHERE</span> continent = <span class="hljs-string">&apos;South America&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>5). Show the <code>name</code> and <code>population</code> for France, Germany, Italy  </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span>, population <span class="hljs-keyword">FROM</span> world</span><br><span class="line"><span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">IN</span> (<span class="hljs-string">&apos;France&apos;</span>, <span class="hljs-string">&apos;Germany&apos;</span>, <span class="hljs-string">&apos;Italy&apos;</span>)</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>6). Show the countries which have a <code>name</code> that includes the word &#x2018;United&#x2019;</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">FROM</span> world</span><br><span class="line"><span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&apos;%United%&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>7). Two ways to be big: A country is <strong>big</strong> if it has an area of more than 3 million sq km or it has a population of more than 250 million. Show the countries that are big by area or big by population. Show name, population and area.</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span>, population, area <span class="hljs-keyword">FROM</span> world</span><br><span class="line"><span class="hljs-keyword">WHERE</span> area &gt; <span class="hljs-number">3000000</span> <span class="hljs-keyword">or</span> population &gt; <span class="hljs-number">250000000</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>8). Exclusive OR (XOR). Show the countries that are big by area or big by population but not both. Show name, population and area.</p>
+<ul>
+<li><p>Australia has a big area but a small population, it should be <strong>included</strong>.</p>
+</li>
+<li><p>Indonesia has a big population but a small area, it should be <strong>included</strong>.</p>
+</li>
+<li><p>China has a big population <strong>and</strong> big area, it should be <strong>excluded</strong>.</p>
+</li>
+<li><p>United Kingdom has a small population and a small area, it should be <strong>excluded</strong>.</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span>, population, area <span class="hljs-keyword">FROM</span> world</span><br><span class="line"><span class="hljs-keyword">WHERE</span> (area &gt; <span class="hljs-number">3000000</span>) <span class="hljs-keyword">XOR</span> (population &gt; <span class="hljs-number">250000000</span>)</span><br></pre></td></tr></tbody></table></figure><p></p>
+</li>
+</ul>
+<p>9). Show the <code>name</code> and <code>population</code> in millions and the GDP in billions for the countries of the <code>continent</code>&#x2018;South America&#x2019;. Use the  <a href="https://sqlzoo.net/wiki/ROUND" target="_blank" rel="noopener">ROUND</a>  function to show the values to two decimal places. For South America show population in millions and GDP in billions both to 2 decimal places.</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span>, <span class="hljs-keyword">ROUND</span>(population/<span class="hljs-number">1000000</span>, <span class="hljs-number">2</span>), <span class="hljs-keyword">ROUND</span>(gdp/<span class="hljs-number">1000000000</span>,<span class="hljs-number">2</span>) <span class="hljs-keyword">FROM</span> world</span><br><span class="line"><span class="hljs-keyword">WHERE</span> continent = <span class="hljs-string">&apos;South America&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>10). Show the <code>name</code> and per-capita GDP for those countries with a GDP of at least one trillion (1000000000000; that is 12 zeros). Round this value to the nearest 1000. Show per-capita GDP for the trillion dollar countries to the nearest $1000.</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span>, <span class="hljs-keyword">ROUND</span>(gdp/population,<span class="hljs-number">-3</span>) <span class="hljs-keyword">FROM</span> world</span><br><span class="line"><span class="hljs-keyword">WHERE</span> gdp &gt;= <span class="hljs-number">1000000000000</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>11). Greece has capital Athens.</p>
+<p>Each of the strings &#x2018;Greece&#x2019;, and &#x2018;Athens&#x2019; has 6 characters.</p>
+<p>Show the name and capital where the name and the capital have the same number of characters.</p>
+<ul>
+<li><p>You can use the <a href="https://sqlzoo.net/wiki/LENGTH" target="_blank" rel="noopener">LENGTH</a> function to find the number of characters in a string</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span>, capital</span><br><span class="line">  <span class="hljs-keyword">FROM</span> world</span><br><span class="line"> <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">LENGTH</span>(<span class="hljs-keyword">name</span>) = <span class="hljs-keyword">LENGTH</span>(capital)</span><br></pre></td></tr></tbody></table></figure><p></p>
+</li>
+</ul>
+<p>12). The capital of Sweden is Stockholm. Both words start with the letter &#x2018;S&#x2019;. Show the name and the capital where the first letters of each match. Don&#x2019;t include countries where the name and the capital are the same word.</p>
+<ul>
+<li><p>You can use the function <a href="https://sqlzoo.net/wiki/LEFT" target="_blank" rel="noopener">LEFT</a> to isolate the first character.</p>
+</li>
+<li><p>You can use <code>&lt;&gt;</code> as the <strong>NOT EQUALS</strong> operator.</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span>, capital <span class="hljs-keyword">FROM</span> world</span><br><span class="line"><span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">LEFT</span>(<span class="hljs-keyword">name</span>,<span class="hljs-number">1</span>) = <span class="hljs-keyword">LEFT</span>(capital,<span class="hljs-number">1</span>) <span class="hljs-keyword">and</span> <span class="hljs-keyword">name</span> &lt;&gt; capital</span><br></pre></td></tr></tbody></table></figure><p></p>
+</li>
+</ul>
+<p>13). <strong>Equatorial Guinea</strong> and <strong>Dominican Republic</strong> have all of the vowels (a e i o u) in the name. They don&#x2019;t count because they have more than one word in the name. Find the country that has all the vowels and no spaces in its name.</p>
+<ul>
+<li><p>You can use the phrase <code>name NOT LIKE &apos;%a%&apos;</code> to exclude characters from your results.</p>
+</li>
+<li><p>The query shown misses countries like Bahamas and Belarus because they contain at least one &#x2018;a&#x2019;</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span></span><br><span class="line">   <span class="hljs-keyword">FROM</span> world</span><br><span class="line"><span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&apos;%a%&apos;</span> <span class="hljs-keyword">and</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&apos;%e%&apos;</span> <span class="hljs-keyword">and</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&apos;%i%&apos;</span> <span class="hljs-keyword">and</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&apos;%o%&apos;</span> <span class="hljs-keyword">and</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&apos;%u%&apos;</span></span><br><span class="line">  <span class="hljs-keyword">AND</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">LIKE</span> <span class="hljs-string">&apos;% %&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+</li>
+</ul>
+</body></html>
+    
+    </div>
+    
+    
+</article>
+
+
+
+
+    
+        <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            <a href="/2018/08/15/2018-08-16-SELECT-basic/" itemprop="url">SELECT basic</a>
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2018-08-16T00:00:00.000Z" itemprop="datePublished">8月 15 2018</time>
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/SQL/">SQL</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            1 分钟 读完 (约 178 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <html><head></head><body><h2 id="SELECT-basics"><a href="#SELECT-basics" class="headerlink" title="SELECT basics"></a>SELECT basics</h2><h3 id="https-sqlzoo-net-wiki-SELECT-basics"><a href="#https-sqlzoo-net-wiki-SELECT-basics" class="headerlink" title="https://sqlzoo.net/wiki/SELECT_basics"></a><a href="https://sqlzoo.net/wiki/SELECT_basics" target="_blank" rel="noopener">https://sqlzoo.net/wiki/SELECT_basics</a></h3><table>
+<thead>
+<tr>
+<th>name</th>
+<th>continent</th>
+<th>area</th>
+<th>population</th>
+<th>gdp</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Afghanistan</td>
+<td>Asia</td>
+<td>652230</td>
+<td>25500100</td>
+<td>20343000000</td>
+</tr>
+<tr>
+<td>Albania</td>
+<td>Europe</td>
+<td>28748</td>
+<td>2831741</td>
+<td>12960000000</td>
+</tr>
+<tr>
+<td>Algeria</td>
+<td>Africa</td>
+<td>2381741</td>
+<td>37100000</td>
+<td>188681000000</td>
+</tr>
+<tr>
+<td>Andorra</td>
+<td>Europe</td>
+<td>468</td>
+<td>78115</td>
+<td>3712000000</td>
+</tr>
+<tr>
+<td>Angola</td>
+<td>Africa</td>
+<td>1246700</td>
+<td>20609294</td>
+<td>100990000000</td>
+</tr>
+<tr>
+<td>&#x2026;.</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>1). The example uses a WHERE clause to show the population of &#x2018;France&#x2019;. Note that strings (pieces of text that are data) should be in &#x2018;single quotes&#x2019;; Modify it to show the population of Germany</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> population <span class="hljs-keyword">FROM</span> world</span><br><span class="line">  <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> = <span class="hljs-string">&apos;Germany&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>2). Checking a list The word <strong>IN</strong> allows us to check if an item is in a list. The example shows the name and population for the countries &#x2018;Brazil&#x2019;, &#x2018;Russia&#x2019;, &#x2018;India&#x2019; and &#x2018;China&#x2019;. Show the <strong>name</strong> and the <strong>population</strong> for &#x2018;Sweden&#x2019;, &#x2018;Norway&#x2019; and &#x2018;Denmark&#x2019;.</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span>, population <span class="hljs-keyword">FROM</span> world</span><br><span class="line">  <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">IN</span> ( <span class="hljs-string">&apos;Sweden&apos;</span>, <span class="hljs-string">&apos;Norway&apos;</span> , <span class="hljs-string">&apos;Denmark&apos;</span>);</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>3). Which countries are not too small and not too big? <code>BETWEEN</code> allows range checking (range specified is inclusive of boundary values). The example below shows countries with an area of 250,000-300,000 sq. km. Modify it to show the country and the area for countries with an area between 200,000 and 250,000. </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span>, area <span class="hljs-keyword">FROM</span> world</span><br><span class="line">  <span class="hljs-keyword">WHERE</span> area <span class="hljs-keyword">BETWEEN</span> <span class="hljs-number">200000</span> <span class="hljs-keyword">AND</span> <span class="hljs-number">250000</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+</body></html>
+    
+    </div>
+    
+    
+</article>
+
+
+
+
+    
+    
+        
+<nav class="pagination is-centered is-rounded" role="navigation" aria-label="pagination">
+    <div class="pagination-previous is-invisible is-hidden-mobile">
+        <a href="/page/0/">上一页</a>
+    </div>
+    <div class="pagination-next">
+        <a href="/page/2/">下一页</a>
+    </div>
+    <ul class="pagination-list is-hidden-mobile">
+        
+        <li><a class="pagination-link is-current" href="/">1</a></li>
+        
+        <li><a class="pagination-link" href="/page/2/">2</a></li>
+        
+    </ul>
+</nav>
     
     </div>
 </section>

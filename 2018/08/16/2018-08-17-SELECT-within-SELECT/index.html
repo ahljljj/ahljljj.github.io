@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+    <meta charset="utf-8">
+<title>SELECT within SELECT - ahljljj</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+
+
+<meta name="description" content="">
+
+
+
+
+
+    <meta name="description" content="SELECT within SELECThttps:&#x2F;&#x2F;sqlzoo.net&#x2F;wiki&#x2F;SELECT_within_SELECT_TutorialThis tutorial looks at how we can use SELECT statements within SELECT statements to perform more complex queries.    name conti">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SELECT within SELECT">
+<meta property="og:url" content="http://ahljljj.github.io/2018/08/16/2018-08-17-SELECT-within-SELECT/index.html">
+<meta property="og:site_name" content="ahljljj">
+<meta property="og:description" content="SELECT within SELECThttps:&#x2F;&#x2F;sqlzoo.net&#x2F;wiki&#x2F;SELECT_within_SELECT_TutorialThis tutorial looks at how we can use SELECT statements within SELECT statements to perform more complex queries.    name conti">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-08-17T00:00:00.000Z">
+<meta property="article:modified_time" content="2020-03-21T20:26:40.641Z">
+<meta property="article:author" content="ahljljj">
+<meta property="article:tag" content="ALL OVER A LIST">
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+<link rel="icon" href="/favicon.png">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                <img src="/images/logo.png" alt="" height="28">
+                
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item "
+               href="/archives">Archives</a>
+            
+            <a class="navbar-item "
+               href="/categories/">Categories</a>
+            
+            <a class="navbar-item "
+               href="/tags/">Tags</a>
+            
+            <a class="navbar-item "
+               href="/about">About</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="搜索" href="javascript:;">
+                <i class="fas fa-search"></i>
+            </a>
+            
+            
+            
+            <a class="navbar-item" title="GitHub" href="https://github.com/ahljljj" target="_blank" rel="noopener">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+               
+            
+        </div>
+    </div>
+</nav>
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            SELECT within SELECT
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2018-08-17T00:00:00.000Z" itemprop="datePublished">8月 16 2018</time>
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/SQL/">SQL</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            4 分钟 读完 (约 614 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <html><head></head><body><h2 id="SELECT-within-SELECT"><a href="#SELECT-within-SELECT" class="headerlink" title="SELECT within SELECT"></a>SELECT within SELECT</h2><h3 id="https-sqlzoo-net-wiki-SELECT-within-SELECT-Tutorial"><a href="#https-sqlzoo-net-wiki-SELECT-within-SELECT-Tutorial" class="headerlink" title="https://sqlzoo.net/wiki/SELECT_within_SELECT_Tutorial"></a><a href="https://sqlzoo.net/wiki/SELECT_within_SELECT_Tutorial" target="_blank" rel="noopener">https://sqlzoo.net/wiki/SELECT_within_SELECT_Tutorial</a></h3><p>This tutorial looks at how we can use SELECT statements within SELECT statements to perform more complex queries.</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>continent</th>
+<th>area</th>
+<th>population</th>
+<th>gdp</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Afghanistan</td>
+<td>Asia</td>
+<td>652230</td>
+<td>25500100</td>
+<td>20343000000</td>
+</tr>
+<tr>
+<td>Albania</td>
+<td>Europe</td>
+<td>28748</td>
+<td>2831741</td>
+<td>12960000000</td>
+</tr>
+<tr>
+<td>Algeria</td>
+<td>Africa</td>
+<td>2381741</td>
+<td>37100000</td>
+<td>188681000000</td>
+</tr>
+<tr>
+<td>Andorra</td>
+<td>Europe</td>
+<td>468</td>
+<td>78115</td>
+<td>3712000000</td>
+</tr>
+<tr>
+<td>Angola</td>
+<td>Africa</td>
+<td>1246700</td>
+<td>20609294</td>
+<td>100990000000</td>
+</tr>
+<tr>
+<td>&#x2026;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>1). List each country <strong>name</strong> where the <strong>population</strong> is larger than that of &#x2018;Russia&#x2019;.</p>
+<p></p><figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">world(name, continent, area, population, gdp)</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">FROM</span> world</span><br><span class="line">  <span class="hljs-keyword">WHERE</span> population &gt;</span><br><span class="line">     (<span class="hljs-keyword">SELECT</span> population <span class="hljs-keyword">FROM</span> world</span><br><span class="line">      <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span>=<span class="hljs-string">&apos;Russia&apos;</span>)</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>2). Show the countries in Europe with a per capita GDP greater than &#x2018;United Kingdom&#x2019;. </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">FROM</span> world</span><br><span class="line"><span class="hljs-keyword">WHERE</span> gdp/population&gt;</span><br><span class="line">(<span class="hljs-keyword">SELECT</span> gdp/population <span class="hljs-keyword">FROM</span> world <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> = <span class="hljs-string">&apos;United Kingdom&apos;</span>) <span class="hljs-keyword">AND</span> continent = <span class="hljs-string">&apos;Europe&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>3). List the <strong>name</strong> and <strong>continent</strong> of countries in the continents containing either <strong>Argentina</strong> or <strong>Australia</strong>. Order by name of the country. </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span>, continent <span class="hljs-keyword">FROM</span> world</span><br><span class="line"><span class="hljs-keyword">WHERE</span> continent <span class="hljs-keyword">IN</span> </span><br><span class="line">(<span class="hljs-keyword">SELECT</span> continent <span class="hljs-keyword">FROM</span> world <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">IN</span> (<span class="hljs-string">&apos;Argentina&apos;</span>,<span class="hljs-string">&apos;Australia&apos;</span>))</span><br><span class="line"><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-keyword">name</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>4). Which country has a population that is more than Canada but less than Poland? Show the name and the population. </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span>, population <span class="hljs-keyword">FROM</span> world</span><br><span class="line"><span class="hljs-keyword">WHERE</span> population &gt;</span><br><span class="line">(<span class="hljs-keyword">SELECT</span> population <span class="hljs-keyword">FROM</span> world <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> = <span class="hljs-string">&apos;Canada&apos;</span>)</span><br><span class="line"><span class="hljs-keyword">AND</span> population &lt;</span><br><span class="line">(<span class="hljs-keyword">SELECT</span> population <span class="hljs-keyword">FROM</span> world <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> = <span class="hljs-string">&apos;Poland&apos;</span>)</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>5). Germany (population 80 million) has the largest population of the countries in Europe. Austria (population 8.5 million) has 11% of the population of Germany.</p>
+<p>Show the name and the population of each country in Europe. Show the population as a percentage of the population of Germany.</p>
+<p><u>Decimal places</u></p>
+<p>You can use the function <a href="https://sqlzoo.net/wiki/ROUND" target="_blank" rel="noopener">ROUND</a> to remove the decimal places.</p>
+<p><u>Percent symbol %</u></p>
+<p>You can use the function <a href="https://sqlzoo.net/wiki/CONCAT" target="_blank" rel="noopener">CONCAT</a> to add the percentage symbol.</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span>, <span class="hljs-keyword">CONCAT</span>(<span class="hljs-keyword">round</span>(<span class="hljs-number">100</span>*population/</span><br><span class="line">(<span class="hljs-keyword">SELECT</span> population <span class="hljs-keyword">FROM</span> world <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> = <span class="hljs-string">&apos;Germany&apos;</span>)),<span class="hljs-string">&apos;%&apos;</span>)</span><br><span class="line"><span class="hljs-keyword">FROM</span> world</span><br><span class="line"><span class="hljs-keyword">WHERE</span> continent = <span class="hljs-string">&apos;Europe&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>To gain an absurdly detailed view of one insignificant feature of the language, read on.</p>
+<p>We can use the word <code>ALL</code> to allow &gt;= or &gt; or &lt; or &lt;=to act over a list. For example, you can find the largest country in the world, by population with this query:</p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span></span><br><span class="line">  <span class="hljs-keyword">FROM</span> world</span><br><span class="line"> <span class="hljs-keyword">WHERE</span> population &gt;= <span class="hljs-keyword">ALL</span>(<span class="hljs-keyword">SELECT</span> population</span><br><span class="line">                           <span class="hljs-keyword">FROM</span> world</span><br><span class="line">                          <span class="hljs-keyword">WHERE</span> population&gt;<span class="hljs-number">0</span>)</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>You need the condition <strong>population&gt;0</strong> in the sub-query as some countries have <strong>null</strong> for population.</p>
+<p>6). Which countries have a GDP greater than every country in Europe? [Give the <strong>name</strong> only.] (Some countries may have NULL gdp values) </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span></span><br><span class="line">  <span class="hljs-keyword">FROM</span> world</span><br><span class="line"> <span class="hljs-keyword">WHERE</span> gdp &gt; <span class="hljs-keyword">ALL</span>(<span class="hljs-keyword">SELECT</span> gdp</span><br><span class="line">                           <span class="hljs-keyword">FROM</span> world</span><br><span class="line">                          <span class="hljs-keyword">WHERE</span> gdp&gt;<span class="hljs-number">0</span> <span class="hljs-keyword">and</span> continent=<span class="hljs-string">&apos;Europe&apos;</span>)</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>We can refer to values in the outer SELECT within the inner SELECT. We can name the tables so that we can tell the difference between the inner and outer versions. </p>
+<p>7). Find the largest country (by area) in each continent, show the <strong>continent</strong>, the <strong>name</strong> and the <strong>area</strong>: </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> continent, <span class="hljs-keyword">name</span>, area <span class="hljs-keyword">FROM</span> world x</span><br><span class="line">  <span class="hljs-keyword">WHERE</span> area &gt;= <span class="hljs-keyword">ALL</span></span><br><span class="line">    (<span class="hljs-keyword">SELECT</span> area <span class="hljs-keyword">FROM</span> world y</span><br><span class="line">        <span class="hljs-keyword">WHERE</span> y.continent = x.continent</span><br><span class="line">          <span class="hljs-keyword">AND</span> area&gt;<span class="hljs-number">0</span>)</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>8). List each continent and the name of the country that comes first alphabetically. </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> continent, <span class="hljs-keyword">name</span> <span class="hljs-keyword">FROM</span> world x</span><br><span class="line"><span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> = (</span><br><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">FROM</span> world y </span><br><span class="line"><span class="hljs-keyword">WHERE</span> x.continent = y.continent <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">LIMIT</span> <span class="hljs-number">1</span></span><br><span class="line">)</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>9). Find the continents where all countries have a population &lt;= 25000000. Then find the names of the countries associated with these continents. Show <strong>name</strong>, <strong>continent</strong> and <strong>population</strong>. </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span>, continent, population <span class="hljs-keyword">FROM</span> world x</span><br><span class="line"><span class="hljs-keyword">WHERE</span> x.continent <span class="hljs-keyword">in</span> (</span><br><span class="line"><span class="hljs-keyword">SELECT</span> continent <span class="hljs-keyword">FROM</span> world y <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> continent</span><br><span class="line"><span class="hljs-keyword">HAVING</span> <span class="hljs-keyword">MAX</span>(y.population) &lt;= <span class="hljs-number">25000000</span></span><br><span class="line">)</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p>10). Some countries have populations more than three times that of any of their neighbours (in the same continent). Give the countries and continents. </p>
+<p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span>, continent <span class="hljs-keyword">FROM</span> world x</span><br><span class="line"><span class="hljs-keyword">WHERE</span> population &gt; <span class="hljs-keyword">ALL</span>(</span><br><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-number">3</span>*population <span class="hljs-keyword">FROM</span> world y</span><br><span class="line"><span class="hljs-keyword">WHERE</span> x.continent = y.continent <span class="hljs-keyword">AND</span> x.name != y.name</span><br><span class="line">)</span><br></pre></td></tr></tbody></table></figure><p></p>
+</body></html>
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/ALL-OVER-A-LIST/">#ALL OVER A LIST</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/2018/08/16/2018-08-17-SELECT-from-Nobel/">SELECT from Nobel</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2018/08/16/2018-08-17-SELECT-from-WORLD/">SELECT from WORLD</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+<div class="comments">
+    <h3 class="title is-4">评论</h3>
+    
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://ahljljj.github.io/2018/08/16/2018-08-17-SELECT-within-SELECT/';
+        this.page.identifier = '2018/08/16/2018-08-17-SELECT-within-SELECT/';
+        
+        this.language = 'zh';
+        
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'ahljljj' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+</div>
+</div>
+
+    </div>
+</section>
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2020 ahljljj&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            <div class="column is-narrow">
+                <div class="columns is-mobile is-multiline is-centered">
+                
+                    
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/ahljljj" target="_blank" rel="noopener">
+                    
+                    GitHub
+                    
+                </a>
+                
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+
+<script src="/js/script.js"></script>
+
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="站内搜索" />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+    
+</body>
+</html>
