@@ -1,86 +1,243 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="zh-cn">
 <head>
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="ahljljj">
+
+
+
+
+
+<title>Stochastic gradient decent and gradient decent | ahljljj</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
     
-    <title>Stochastic gradient decent and gradient decent - ahljljj</title>
-    <meta charset="utf-8">
+    <link rel="stylesheet" href="/css/style.css">
     
-    <meta name="title" content="Stochastic gradient decent and gradient decent - ahljljj">
-    <meta name="description" content="">
-    <meta property="og:image" content="/favicon.png">
-    <meta property="og:image:width" content="200" />
-    <meta property="og:image:height" content="200" />
-    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <!-- scripts list from _config.yml -->
     
-    <link rel="stylesheet"
-        href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/arduino-light.min.css">
-    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/script.js"></script>
     
+    <script src="/js/tocbot.min.js"></script>
     
-<link rel="stylesheet" href="/css/style.css">
+
+
 
     
-<script src="/js/jquery.min.js"></script>
-
     
-<script src="/js/saki.js"></script>
+        
+            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+        
+    
+
 
 <meta name="generator" content="Hexo 4.2.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
-
 <body>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="header">
-  <div class="blog-title">
-    <a href="/" class="logo">ahljljj</a>
-  </div>
-  <nav class="navbar">
-    <ul class="menu">
-      
-      
-      
-      <li class="menu-item">
-        
-        <a href="/" class="menu-item-link">主页</a>
-        
-      </li>
-      
-      
-      
-      <li class="menu-item">
-        
-        <a href="/archives" class="menu-item-link">归档</a>
-        
-      </li>
-      
-      
-      
-      <li class="menu-item">
-        
-        <a href="/about" class="menu-item-link">关于</a>
-        
-      </li>
-      
-      
-      
-      <li class="menu-item">
-        
-        <a href="/rss" class="menu-item-link">订阅</a>
-        
-      </li>
-      
-    </ul>
-  </nav>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Bentham&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Bentham&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
 </header>
-  <main class="main">
-    <article class="post">
-    <div class="post-title">
-        <h1 class="title">Stochastic gradient decent and gradient decent</h2>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
     </div>
-    <div class="post-content">
-        <h5 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h5><p>This analysis explores the relation between the gradient decent and stochastic gradient decent. Starting from the basic gradient decent method, we shall see that SGD actually decrease this energy on “average”.</p>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Stochastic gradient decent and gradient decent</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">ahljljj</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">五月 15, 2018&nbsp;&nbsp;20:00:00</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Algorithm/">Algorithm</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h5 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h5><p>This analysis explores the relation between the gradient decent and stochastic gradient decent. Starting from the basic gradient decent method, we shall see that SGD actually decrease this energy on “average”.</p>
 <h5 id="Gradient-decent-a-math-approach"><a href="#Gradient-decent-a-math-approach" class="headerlink" title="Gradient decent: a math approach"></a>Gradient decent: a math approach</h5><p>Let’s introduce the convex function first.</p>
 <ul>
 <li>A function $f:\mathbb{R}^n\rightarrow\mathbb{R}$ is convex if and only if for all $x,y$ $\in \mathbb{R}^n$ and $\lambda\in (0,1)$, we have<script type="math/tex; mode=display">
@@ -113,39 +270,79 @@ f(\lambda x+(1-\lambda)y)\leq \lambda f(x)+(1-\lambda)f(y).</script></li>
 <h4 id="Stochastic-descent-gradient-SGD"><a href="#Stochastic-descent-gradient-SGD" class="headerlink" title="Stochastic descent gradient (SGD)"></a>Stochastic descent gradient (SGD)</h4><p>Like gradient descent, SGD is another numerical algorithm to find the minimum/maximum.</p>
 <p>TBD.</p>
 
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>ahljljj</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://yoursite.com/2018/05/15/2018-05-16-Stochastic-gradient-decent-and-gradient-decent/">http://yoursite.com/2018/05/15/2018-05-16-Stochastic-gradient-decent-and-gradient-decent/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Stochastic-Gradient/"># Stochastic Gradient</a>
+                    
+                        <a href="/tags/Calculus/"># Calculus</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2018/05/18/2018-05-19-Monotonicity-of-K-means/">Monotonicity of K-means</a>
+            
+            
+            <a class="next" rel="next" href="/2018/05/14/2018-05-15-Adaboost-decision-tree-algorithms/">Adaboost decision tree algorithms</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© ahljljj | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
     </div>
-    <div class="post-meta">
-        <span class="post-time">2018/05/15</span>
-    </div>
-</article>
+</footer>
 
-<div class="prev_next">
-    <nav id="prev_next">
-
-<div class="prev">
-    
-    <p>上一篇</p>
-    <a href="/2018/05/18/2018-05-19-Monotonicity-of-K-means/"><div class="article-nav-title">Monotonicity of K-means</div></a>
-    
-</div>
-<div class="next">
-    
-    <p>下一篇</p>
-    <a href="/2018/05/14/2018-05-15-Adaboost-decision-tree-algorithms/"><div class="article-nav-title">Adaboost decision tree algorithms</div></a>
-    
-</div>
-
-</nav>
-</div>
-
-<div class="post-comment">
-    
-
-
-</div>
-  </main><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+    </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
 
 <script type="text/x-mathjax-config">
@@ -157,10 +354,9 @@ f(\lambda x+(1-\lambda)y)\leq \lambda f(x)+(1-\lambda)f(y).</script></li>
   });
 </script>
 
-<script type="text/javascript" src="">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
 </body>
-
 </html>

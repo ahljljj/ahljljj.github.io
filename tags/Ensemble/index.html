@@ -1,98 +1,141 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="zh-cn">
 <head>
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="ahljljj">
+
+
+
+
+
+<title>Tag: Ensemble | ahljljj</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
     
-    <title>ahljljj</title>
-    <meta charset="utf-8">
+    <link rel="stylesheet" href="/css/style.css">
     
-    <meta name="title" content="ahljljj">
-    <meta name="description" content="">
-    <meta property="og:image" content="/favicon.png">
-    <meta property="og:image:width" content="200" />
-    <meta property="og:image:height" content="200" />
-    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <!-- scripts list from _config.yml -->
     
-    <link rel="stylesheet"
-        href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/arduino-light.min.css">
-    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/script.js"></script>
     
+    <script src="/js/tocbot.min.js"></script>
     
-<link rel="stylesheet" href="/css/style.css">
+
+
 
     
-<script src="/js/jquery.min.js"></script>
-
     
-<script src="/js/saki.js"></script>
+        
+    
+
 
 <meta name="generator" content="Hexo 4.2.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
-
 <body>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="header">
-  <div class="blog-title">
-    <a href="/" class="logo">ahljljj</a>
-  </div>
-  <nav class="navbar">
-    <ul class="menu">
-      
-      
-      
-      <li class="menu-item">
-        
-        <a href="/" class="menu-item-link">主页</a>
-        
-      </li>
-      
-      
-      
-      <li class="menu-item">
-        
-        <a href="/archives" class="menu-item-link">归档</a>
-        
-      </li>
-      
-      
-      
-      <li class="menu-item">
-        
-        <a href="/about" class="menu-item-link">关于</a>
-        
-      </li>
-      
-      
-      
-      <li class="menu-item">
-        
-        <a href="/rss" class="menu-item-link">订阅</a>
-        
-      </li>
-      
-    </ul>
-  </nav>
-</header>
-  <main class="main">
-    <section class="archive">
-    <ul class="post-archive">
-        
-        
-        <div class="years">
-            <div class="year">2018</div>
-            
-            
-            <li class="post-item">
-                <span class="post-date">05/14</span>
-                <a class="post-title" href="/2018/05/14/2018-05-15-Adaboost-decision-tree-algorithms/">Adaboost decision tree algorithms</a>
-            </li>
-            
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Bentham&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
         </div>
-        
-    </ul>
-</section>
-  </main><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-</body>
+    </nav>
 
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Bentham&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            
+
+    
+<div class="container">
+    <div class="post-wrap tags">
+        <h2 class="post-title">-&nbsp;Tag&nbsp;·&nbsp;Ensemble-</h2>
+    </div>
+    <div class="post-wrap archive">
+    
+    
+        
+
+        
+            <h3>2018</h3>
+        
+
+        <article class="archive-item">
+            <a class="archive-item-link" href="/2018/05/14/2018-05-15-Adaboost-decision-tree-algorithms/">Adaboost decision tree algorithms</a>
+            <span class="archive-item-date">五月 14, 2018</span>
+        </article>
+    
+    
+</div>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© ahljljj | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
 </html>
