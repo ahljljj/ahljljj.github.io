@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sqlzoo.net/w/images/1/10/Movie-er.png">
 <meta property="article:published_time" content="2018-08-23T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-03-21T21:18:08.934Z">
+<meta property="article:modified_time" content="2020-03-21T23:30:31.288Z">
 <meta property="article:author" content="ahljljj">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://sqlzoo.net/w/images/1/10/Movie-er.png">
@@ -76,7 +76,9 @@
         <div class="navbar-brand">
             <a class="navbar-item navbar-logo" href="/">
                 
-                <img src="/images/logo.png" alt="" height="28">
+                    
+                    Big L
+                    
                 
             </a>
             <div class="navbar-burger">
@@ -149,10 +151,9 @@
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <html><head></head><body><h2 id="More-JOIN-operations"><a href="#More-JOIN-operations" class="headerlink" title="More JOIN operations"></a>More JOIN operations</h2><p>This tutorial introduces the notion of a join. The database consists of three tables <code>movie</code> , <code>actor</code> and <code>casting</code> .</p>
+        <html><head></head><body><h2 id="More-JOIN-operations"><a href="#More-JOIN-operations" class="headerlink" title="More JOIN operations"></a>More JOIN operations</h2><p>This tutorial introduces the notion of a join. The database consists of three tables <code>movie</code> , <code>actor</code> and <code>casting</code> .<a id="more"></a></p>
 <p><img src="https://sqlzoo.net/w/images/1/10/Movie-er.png" alt="Movie-er.png"></p>
-<a id="more"></a>1). List the films where the **yr** is 1962 [Show **id**, **title**]
-
+<p>1). List the films where the <strong>yr</strong> is 1962 [Show <strong>id</strong>, <strong>title</strong>]</p>
 <p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">id</span>, title</span><br><span class="line"> <span class="hljs-keyword">FROM</span> movie</span><br><span class="line"> <span class="hljs-keyword">WHERE</span> yr=<span class="hljs-number">1962</span></span><br></pre></td></tr></tbody></table></figure><p></p>
 <p>2). Give year of &#x2018;Citizen Kane&#x2019;.</p>
 <p></p><figure class="highlight sql hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">SELECT</span> yr <span class="hljs-keyword">FROM</span> movie </span><br><span class="line"><span class="hljs-keyword">WHERE</span> title=<span class="hljs-string">&apos;Citizen Kane&apos;</span></span><br></pre></td></tr></tbody></table></figure><p></p>
