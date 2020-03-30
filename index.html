@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="has-navbar-fixed-top">
 <head>
-    <meta charset="utf-8">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
 <title>ahljljj</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -20,7 +20,7 @@
 <meta property="og:title" content="ahljljj">
 <meta property="og:url" content="http://ahljljj.github.io/index.html">
 <meta property="og:site_name" content="ahljljj">
-<meta property="og:locale" content="zh_CN">
+<meta property="og:locale" content="en_US">
 <meta property="article:author" content="ahljljj">
 <meta name="twitter:card" content="summary">
 
@@ -60,10 +60,10 @@
     
 
 
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
 <body>
     
-<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
     <div class="container">
         <div class="navbar-brand">
             <a class="navbar-item navbar-logo" href="/">
@@ -98,7 +98,7 @@
         
         <div class="navbar-menu navbar-end">
             
-            <a class="navbar-item search" title="搜索" href="javascript:;">
+            <a class="navbar-item search" title="Search" href="javascript:;">
                 <i class="fas fa-search"></i>
             </a>
             
@@ -121,36 +121,129 @@
         <article class="article content gallery" itemscope itemprop="blogPost">
     <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
         
-            <a href="/2020/03/23/2020-03-24-two-pointers-and-partition-array-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url">two pointers and partition array 学习笔记</a>
+            <a href="/2020/03/26/2020-03-27-Sort-in-Python/" itemprop="url">Sort in Python</a>
         
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
-            <time datetime="2020-03-24T00:00:00.000Z" itemprop="datePublished">3月 23 2020</time>
+            <time datetime="2020-03-27T00:00:00.000Z" itemprop="datePublished">Mar 26 2020</time>
         </span>
         
         <span class="column is-narrow article-category">
             <i class="far fa-folder"></i>
-            <a class="article-category-link" href="/categories/Lintcode/">Lintcode</a>
+            <a class="article-category-link" href="/categories/Template/">Template</a>
         </span>
         
         
         <span class="column is-narrow">
             
             
-            几秒 读完 (约 69 字)
+            7 minutes read (About 1101 words)
         </span>
         
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <html><head></head><body><h5 id="Lintcode-148-sort-colors"><a href="#Lintcode-148-sort-colors" class="headerlink" title="Lintcode 148. sort colors"></a>Lintcode 148. sort colors</h5><p>Based on value  $O({N})$:</p>
-<p>A: counting sort (&#x8BA1;&#x6570;&#x6392;&#x5E8F;) == hash map, radit sort, bucket sort &#x2026;</p>
-<p>Based on comparsion $O(N\log N)$:</p>
-<p>B: quick sort , merge sort, bubble sort, insertion sort &#x2026;</p>
-<p>Java: comparator; python: cmp; &#x2026;</p></body></html>
+        internal, quicksort, and merge sort in Python.
         <p class="article-more-link">
-            <a href="/2020/03/23/2020-03-24-two-pointers-and-partition-array-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#more">阅读更多</a>
+            <a href="/2020/03/26/2020-03-27-Sort-in-Python/#more">Read More</a>
+        </p>
+    
+    </div>
+    
+    
+</article>
+
+
+
+
+    
+        <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            <a href="/2020/03/26/2020-03-27-sliding-window-%E6%A8%A1%E6%9D%BF%E4%BB%A3%E7%A0%81/" itemprop="url">sliding window 模板代码</a>
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2020-03-27T00:00:00.000Z" itemprop="datePublished">Mar 26 2020</time>
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/Template/">Template</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            2 minutes read (About 240 words)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <html><head></head><body><p>&#x8FD9;&#x662F;&#x7F51;&#x4E0A;&#x770B;&#x5230;&#x7684;&#x4E00;&#x4E2A;&#x5B9E;&#x73B0; sliding / moving window &#x7684;&#x601D;&#x8DEF;&#x6A21;&#x677F;&#xFF0C;&#x89C9;&#x5F97;&#x5F88;&#x597D;&#xFF0C;&#x8BB0;&#x5F55;&#x4E0B;&#x6765;&#x3002;</p><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end --></body></html>
+        <!-- hexo-inject:begin --><!-- hexo-inject:end --><p class="article-more-link">
+            <a href="/2020/03/26/2020-03-27-sliding-window-%E6%A8%A1%E6%9D%BF%E4%BB%A3%E7%A0%81/#more">Read More</a>
+        </p>
+    
+    </div>
+    
+    
+</article>
+
+
+
+
+    
+        <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            <a href="/2020/03/23/2020-03-24-two-pointers-and-partition-array-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url">two pointers and partition array 学习笔记</a>
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2020-03-24T00:00:00.000Z" itemprop="datePublished">Mar 23 2020</time>
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/Notes/">Notes</a><span>></span><a class="article-category-link" href="/categories/Notes/algorithm/">algorithm</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            29 minutes read (About 4356 words)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <html><head><!-- hexo-inject:begin --><!-- hexo-inject:end --></head><body><p>&#x8FD9;&#x5468;&#x5B66;&#x4E60;&#x53CC;&#x6307;&#x9488;&#x7B97;&#x6CD5;&#x3002;</p></body></html>
+        <!-- hexo-inject:begin --><!-- hexo-inject:end --><p class="article-more-link">
+            <a href="/2020/03/23/2020-03-24-two-pointers-and-partition-array-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#more">Read More</a>
         </p>
     
     </div>
@@ -170,7 +263,7 @@
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
-            <time datetime="2020-03-22T00:00:00.000Z" itemprop="datePublished">3月 21 2020</time>
+            <time datetime="2020-03-22T00:00:00.000Z" itemprop="datePublished">Mar 21 2020</time>
         </span>
         
         <span class="column is-narrow article-category">
@@ -182,15 +275,15 @@
         <span class="column is-narrow">
             
             
-            4 分钟 读完 (约 623 字)
+            4 minutes read (About 623 words)
         </span>
         
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <html><head></head><body><p>&#x4E8C;&#x5206;&#x6CD5;&#x7EC3;&#x4E60; &#x975E;&#x539F;&#x521B;&#x89E3;&#x6CD5;</p></body></html>
+        <html><head></head><body><p>&#x4E8C;&#x5206;&#x6CD5;&#x7EC3;&#x4E60; &#x975E;&#x539F;&#x521B;&#x89E3;&#x6CD5;</p><!-- hexo-inject:begin --><!-- hexo-inject:end --></body></html>
         <p class="article-more-link">
-            <a href="/2020/03/21/2020-03-22-Copy-Books/#more">阅读更多</a>
+            <a href="/2020/03/21/2020-03-22-Copy-Books/#more">Read More</a>
         </p>
     
     </div>
@@ -210,19 +303,19 @@
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
-            <time datetime="2020-03-21T00:00:00.000Z" itemprop="datePublished">3月 20 2020</time>
+            <time datetime="2020-03-21T00:00:00.000Z" itemprop="datePublished">Mar 20 2020</time>
         </span>
         
         <span class="column is-narrow article-category">
             <i class="far fa-folder"></i>
-            <a class="article-category-link" href="/categories/Lintcode/">Lintcode</a>
+            <a class="article-category-link" href="/categories/Notes/">Notes</a><span>></span><a class="article-category-link" href="/categories/Notes/algorithm/">algorithm</a>
         </span>
         
         
         <span class="column is-narrow">
             
             
-            18 分钟 读完 (约 2655 字)
+            18 minutes read (About 2655 words)
         </span>
         
     </div>
@@ -230,7 +323,7 @@
     
         <html><head></head><body><p>&#x6700;&#x8FD1;&#x542C;&#x4E86;&#x4E5D;&#x7AE0;&#x7684;&#x7B97;&#x6CD5;&#x73ED;&#x7684;&#x89C6;&#x9891;&#xFF0C;&#x611F;&#x89C9;&#x8BB2;&#x5F97;&#x5F88;&#x4E0D;&#x9519;&#x3002;&#x521A;&#x5F00;&#x59CB;&#x4ECE;&#x4E8C;&#x5206;&#x6CD5;&#x8BB2;&#x8D77;&#xFF0C;&#x4ED6;&#x5BB6;&#x7684;&#x6A21;&#x677F;&#x603B;&#x7ED3;&#x7684;&#x5F88;&#x597D;&#xFF0C;&#x4E4B;&#x524D;&#x6211;&#x81EA;&#x5DF1;&#x5728;&#x505A;Leetcode&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x603B;&#x662F;&#x628A;&#x65F6;&#x95F4;&#x6D6A;&#x8D39;&#x5728;&#x4E00;&#x4E9B;&#x5F88;&#x9E21;&#x6BDB;&#x849C;&#x76AE;&#x7684;&#x4E8B;&#x60C5;&#x4E0A;&#xFF0C;&#x6BD4;&#x5982; edge case&#x7684;&#x5224;&#x65AD;&#xFF0C; &#x8FD9;&#x4E2A;&#x5730;&#x65B9;&#x662F;&#x5927;&#x4E8E;&#x53F7;&#x8FD8;&#x662F;&#x5C0F;&#x4E8E;&#x53F7;&#xFF0C;&#x8981;&#x52A0;&#x4E00;&#x8FD8;&#x662F;&#x51CF;&#x4E00;&#xFF0C; &#x8BF8;&#x5982;&#x6B64;&#x7C7B;&#x3002;&#x82B1;&#x8D39;&#x4E86;&#x5F88;&#x591A;&#x65F6;&#x95F4;&#x8FD8;&#x5F88;&#x6CA1;&#x6709;&#x6210;&#x5C31;&#x611F;&#xFF0C;&#x56E0;&#x4E3A;&#x8FC7;&#x51E0;&#x5929;&#x53C8;&#x5FD8;&#x8BB0;&#x4E86;&#x3002;&#x542C;&#x4E86;&#x76F4;&#x64AD;&#x540E;&#xFF0C;&#x89C9;&#x5F97;&#x4ED6;&#x4EEC;&#x603B;&#x7ED3;&#x7684;&#x5F88;&#x597D;&#xFF0C;&#x4E8E;&#x662F;&#x505A;&#x4E2A;&#x8BB0;&#x5F55;&#x5427;&#x3002;</p></body></html>
         <p class="article-more-link">
-            <a href="/2020/03/20/%E4%BA%8C%E5%88%86%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#more">阅读更多</a>
+            <a href="/2020/03/20/%E4%BA%8C%E5%88%86%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#more">Read More</a>
         </p>
     
     </div>
@@ -250,14 +343,14 @@
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
-            <time datetime="2020-03-20T23:09:56.338Z" itemprop="datePublished">3月 20 2020</time>
+            <time datetime="2020-03-20T23:09:56.338Z" itemprop="datePublished">Mar 20 2020</time>
         </span>
         
         
         <span class="column is-narrow">
             
             
-            1 分钟 读完 (约 124 字)
+            a minute read (About 124 words)
         </span>
         
     </div>
@@ -265,7 +358,7 @@
     
         <html><head></head><body><p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p></body></html>
         <p class="article-more-link">
-            <a href="/2020/03/20/hello-world/#more">阅读更多</a>
+            <a href="/2020/03/20/hello-world/#more">Read More</a>
         </p>
     
     </div>
@@ -285,7 +378,7 @@
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
-            <time datetime="2018-08-23T00:00:00.000Z" itemprop="datePublished">8月 22 2018</time>
+            <time datetime="2018-08-23T00:00:00.000Z" itemprop="datePublished">Aug 22 2018</time>
         </span>
         
         <span class="column is-narrow article-category">
@@ -297,7 +390,7 @@
         <span class="column is-narrow">
             
             
-            3 分钟 读完 (约 377 字)
+            3 minutes read (About 377 words)
         </span>
         
     </div>
@@ -305,7 +398,7 @@
     
         <html><head></head><body><h2 id="Using-Null"><a href="#Using-Null" class="headerlink" title="Using Null"></a></h2></body></html>
         <p class="article-more-link">
-            <a href="/2018/08/22/2018-08-23-Using-Null/#more">阅读更多</a>
+            <a href="/2018/08/22/2018-08-23-Using-Null/#more">Read More</a>
         </p>
     
     </div>
@@ -325,7 +418,7 @@
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
-            <time datetime="2018-08-23T00:00:00.000Z" itemprop="datePublished">8月 22 2018</time>
+            <time datetime="2018-08-23T00:00:00.000Z" itemprop="datePublished">Aug 22 2018</time>
         </span>
         
         <span class="column is-narrow article-category">
@@ -337,7 +430,7 @@
         <span class="column is-narrow">
             
             
-            4 分钟 读完 (约 647 字)
+            4 minutes read (About 647 words)
         </span>
         
     </div>
@@ -345,7 +438,7 @@
     
         <html><head></head><body><h2 id="More-JOIN-operations"><a href="#More-JOIN-operations" class="headerlink" title="More JOIN operations"></a>More JOIN operations</h2><p>This tutorial introduces the notion of a join. The database consists of three tables <code>movie</code> , <code>actor</code> and <code>casting</code> .</p></body></html>
         <p class="article-more-link">
-            <a href="/2018/08/22/2018-08-23-More-JOIN-operations/#more">阅读更多</a>
+            <a href="/2018/08/22/2018-08-23-More-JOIN-operations/#more">Read More</a>
         </p>
     
     </div>
@@ -365,7 +458,7 @@
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
-            <time datetime="2018-08-23T00:00:00.000Z" itemprop="datePublished">8月 22 2018</time>
+            <time datetime="2018-08-23T00:00:00.000Z" itemprop="datePublished">Aug 22 2018</time>
         </span>
         
         <span class="column is-narrow article-category">
@@ -377,7 +470,7 @@
         <span class="column is-narrow">
             
             
-            4 分钟 读完 (约 555 字)
+            4 minutes read (About 555 words)
         </span>
         
     </div>
@@ -385,7 +478,7 @@
     
         <html><head></head><body><h2 id="NSS-Tutorial"><a href="#NSS-Tutorial" class="headerlink" title="NSS Tutorial"></a></h2></body></html>
         <p class="article-more-link">
-            <a href="/2018/08/22/2018-08-23-NSS-Tutorial/#more">阅读更多</a>
+            <a href="/2018/08/22/2018-08-23-NSS-Tutorial/#more">Read More</a>
         </p>
     
     </div>
@@ -405,7 +498,7 @@
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
-            <time datetime="2018-08-18T00:00:00.000Z" itemprop="datePublished">8月 17 2018</time>
+            <time datetime="2018-08-18T00:00:00.000Z" itemprop="datePublished">Aug 17 2018</time>
         </span>
         
         <span class="column is-narrow article-category">
@@ -417,7 +510,7 @@
         <span class="column is-narrow">
             
             
-            6 分钟 读完 (约 948 字)
+            6 minutes read (About 948 words)
         </span>
         
     </div>
@@ -425,87 +518,7 @@
     
         <html><head></head><body><h2 id="JOIN"><a href="#JOIN" class="headerlink" title="JOIN"></a></h2></body></html>
         <p class="article-more-link">
-            <a href="/2018/08/17/2018-08-18-JOIN/#more">阅读更多</a>
-        </p>
-    
-    </div>
-    
-    
-</article>
-
-
-
-
-    
-        <article class="article content gallery" itemscope itemprop="blogPost">
-    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
-        
-            <a href="/2018/08/17/2018-08-18-SUM-and-COUNT/" itemprop="url">SUM and COUNT</a>
-        
-    </h1>
-    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
-        <span class="column is-narrow">
-            <time datetime="2018-08-18T00:00:00.000Z" itemprop="datePublished">8月 17 2018</time>
-        </span>
-        
-        <span class="column is-narrow article-category">
-            <i class="far fa-folder"></i>
-            <a class="article-category-link" href="/categories/SQL/">SQL</a>
-        </span>
-        
-        
-        <span class="column is-narrow">
-            
-            
-            2 分钟 读完 (约 233 字)
-        </span>
-        
-    </div>
-    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
-    
-        <html><head></head><body><h2 id="SUM-and-COUNT"><a href="#SUM-and-COUNT" class="headerlink" title="SUM and COUNT"></a></h2></body></html>
-        <p class="article-more-link">
-            <a href="/2018/08/17/2018-08-18-SUM-and-COUNT/#more">阅读更多</a>
-        </p>
-    
-    </div>
-    
-    
-</article>
-
-
-
-
-    
-        <article class="article content gallery" itemscope itemprop="blogPost">
-    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
-        
-            <a href="/2018/08/16/2018-08-17-SELECT-from-Nobel/" itemprop="url">SELECT from Nobel</a>
-        
-    </h1>
-    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
-        <span class="column is-narrow">
-            <time datetime="2018-08-17T00:00:00.000Z" itemprop="datePublished">8月 16 2018</time>
-        </span>
-        
-        <span class="column is-narrow article-category">
-            <i class="far fa-folder"></i>
-            <a class="article-category-link" href="/categories/SQL/">SQL</a>
-        </span>
-        
-        
-        <span class="column is-narrow">
-            
-            
-            3 分钟 读完 (约 461 字)
-        </span>
-        
-    </div>
-    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
-    
-        <html><head></head><body><h2 id="SELECT-from-Nobel"><a href="#SELECT-from-Nobel" class="headerlink" title="SELECT from Nobel"></a></h2></body></html>
-        <p class="article-more-link">
-            <a href="/2018/08/16/2018-08-17-SELECT-from-Nobel/#more">阅读更多</a>
+            <a href="/2018/08/17/2018-08-18-JOIN/#more">Read More</a>
         </p>
     
     </div>
@@ -521,16 +534,18 @@
         
 <nav class="pagination is-centered is-rounded" role="navigation" aria-label="pagination">
     <div class="pagination-previous is-invisible is-hidden-mobile">
-        <a href="/page/0/">上一页</a>
+        <a href="/page/0/">Prev</a>
     </div>
     <div class="pagination-next">
-        <a href="/page/2/">下一页</a>
+        <a href="/page/2/">Next</a>
     </div>
     <ul class="pagination-list is-hidden-mobile">
         
         <li><a class="pagination-link is-current" href="/">1</a></li>
         
         <li><a class="pagination-link" href="/page/2/">2</a></li>
+        
+        <li><a class="pagination-link" href="/page/3/">3</a></li>
         
     </ul>
 </nav>
@@ -590,7 +605,7 @@
     window.FontAwesomeConfig = {
         searchPseudoElements: true
     }
-    moment.locale("zh-CN");
+    moment.locale("en-AU");
 </script>
 
 
@@ -716,7 +731,7 @@
     <div class="searchbox-mask"></div>
     <div class="searchbox-container ins-search-container">
         <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="站内搜索" />
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
             <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="searchbox-result-wrapper ins-section-wrapper">
@@ -728,11 +743,11 @@
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: '文章',
-                PAGES: '页面',
-                CATEGORIES: '分类',
-                TAGS: '标签',
-                UNTITLED: '(无标题)',
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
             },
             CONTENT_URL: '/content.json',
         };
